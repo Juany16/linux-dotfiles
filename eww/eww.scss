@@ -1,0 +1,143 @@
+@import "/home/juani/.cache/wal/colors.scss"
+
+*{ all: unset;}
+
+// Padre
+.padre{
+    background-color: $background;
+    border-radius: 8px;
+    border: 4px solid $foreground;
+    padding: 8px;
+}
+
+// Encabezado
+.encabezado{
+    font-weight: bold;
+    font-size: large;
+}
+
+// Titulo
+.titulo{
+    margin-right: 50px;
+    margin-left: 1px;
+    color: $foreground;
+}
+
+// Menu de Apagado
+.power{
+  //background-color: transparent;
+  border-radius: 0.5rem
+}
+
+// Ajustes
+.ajustes{
+  border-radius: 0.5rem
+}
+
+// Chats
+.chats{
+  border-radius: 0.5rem
+}
+
+// Apps Web
+.appsW{
+  border-radius: 0.5rem
+}
+
+// Apps
+.apps{
+  border-radius: 0.5rem
+}
+
+// Cajas de los menus
+.menus{
+  background-color: $background;
+  border: 4px solid $foreground;
+  padding: 0 0 0 0; 
+}
+
+// Botones de todos los widgets
+.botones{
+  background-color: $color9;
+  color: $foreground;
+  //font-size: 20px;
+  border-radius: 0.4rem;
+  //border: 0px solid $background;
+  //outline: none;
+  margin-top: 4px;
+  padding: 8px;
+
+  &:active{
+    background-color: $background;
+    color: $background;
+  }
+
+  &:focus{
+    outline: none;
+  }
+
+  &:hover{
+    background-color: $color2;
+    color: $background;
+  }
+}
+
+// Boton Cerrar
+.salir{
+  color: $foreground;
+
+  &:hover{
+    color: #ff6666;
+  }
+}
+
+// Calendario
+.date{
+  background-color: $background;
+  color: #ffffff;
+  border: 4px solid $foreground;
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.9rem 0.9rem 0.9rem;
+}
+
+.date-container {
+    font-family: Ubuntu Regular;
+    font-weight: Bolder;
+    font-size: 1rem;
+    color: $foreground;
+    margin: 5px 0;
+  }
+
+.cal-box{
+  font-family: Ubuntu Regular;
+  background-color: $foreground;
+  color: #ffffff;
+  border-radius: 0.3rem;
+  padding: 0.2rem 0.2rem 0.2rem 0.2rem;
+
+  .cal{
+    background-color: $background;
+  }
+}
+
+calendar.header{
+  color: $foreground;
+}
+
+calendar.button{
+  color: $foreground;
+}
+
+calendar.highlight{
+  color: $foreground;
+  font-weight: bold;
+}
+
+calendar:selected{
+  color: $color5;
+  font-weight: bold;
+}
+
+calendar:indeterminate{
+  color: #555555;
+}

@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# Power menu script using tofi
+
+#--config "$HOME"/.config/rofi/powermenu-config)
+
+CHOSEN=$(printf "  Bloquear\n  Cerrar Sesión\n  Reiniciar\n  Apagar" | rofi -dmenu -i -p "")
+
+case "$CHOSEN" in
+    "  Bloquear") ~/.config/Scripts/blocki3lock.sh;;
+    "  Cerrar Sesión") bspc quit ;;
+	"  Reiniciar") reboot ;;
+	"  Apagar") poweroff ;;
+    #"Bloquear") i3lock -i "$(cat /tmp/fondo_actual.txt)";;
+	*) exit 1 ;;
+esac

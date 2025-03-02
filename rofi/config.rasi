@@ -1,0 +1,24 @@
+configuration {
+    display-window: " ";
+    display-windowcd: " ";
+    display-drun: " ";
+    display-calc: " ";
+    modi: "window,windowcd,drun,run,calc,ssh";
+}
+
+//@theme "/usr/share/rofi/themes/android_notification.rasi"
+//@theme "/home/juani/.local/share/rofi/themes/rounded-green-dark.rasi"
+//@theme "/home/juani/.local/share/rofi/themes/squared-nord.rasi"
+//@theme "/home/juani/.local/share/rofi/themes/spotlight-dark.rasi"
+//@theme "/home/juani/.local/share/rofi/themes/rounded-gray-dark.rasi"
+//@theme "/home/juani/.local/share/rofi/themes/nord.rasi"
+//@theme "/home/juani/.local/share/rofi/themes/spotlight-dark.rasi"
+//@theme "/home/juani/.local/share/rofi/themes/spotlight-dark.rasi"
+//@theme "/home/juani/.local/share/rofi/themes/rounded-gray-dark.rasi"
+//@theme "/home/juani/.local/share/rofi/themes/squared-juani.rasi"
+//@theme "/home/juani/.local/share/rofi/themes/squared-juani.rasi"
+//@theme "/home/juani/.local/share/rofi/themes/rounded-gray-dark-juani.rasi"
+//@theme "/home/juani/.local/share/rofi/themes/rounded-gray-dark-juani.rasi"
+//@theme "/home/juani/.local/share/rofi/themes/tema-gris-oscuro-juani.rasi"
+//@theme "/home/juani/.local/share/rofi/themes/tema-gris-oscuro-juani.rasi"
+@theme "/home/juani/.local/share/rofi/themes/tema-juani-pywal.rasi"
