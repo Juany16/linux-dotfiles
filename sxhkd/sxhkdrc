@@ -77,6 +77,9 @@ super + b
 super + d
     ~/Documentos/Programación/To-Do-List/Daily-List-MOD/To-Do-List-Final/App/dist/DailyList/DailyList
 
+super + alt + c
+    zenity --calendar
+
 # Take a screenshot
 Print
     xfce4-screenshooter
