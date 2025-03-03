@@ -5,8 +5,7 @@ CHOSEN=$(printf "  Bloquear\n  Cerrar Sesión\n  Reiniciar\n  Apagar
 case "$CHOSEN" in
     "  Bloquear") ~/.config/Scripts/blocki3lock.sh;;
     "  Cerrar Sesión") zenity --question --text="Seguro que quéres Cerrar la Sesión?" && bspc quit ;;
-	"  Reiniciar") zenity --question --text="Seguro que quéres Reiniciar?" && reboot ;;
-	"  Apagar") zenity --question --text="Seguro que quéres Apagar?" && poweroff ;;
-    #"Bloquear") i3lock -i "$(cat /tmp/fondo_actual.txt)";;
+    "  Reiniciar") zenity --question --text="Seguro que quéres Reiniciar?" && reboot ;;
+    "  Apagar") zenity --question --text="Seguro que quéres Apagar?" && poweroff ;;
 	*) exit 1 ;;
 esac
