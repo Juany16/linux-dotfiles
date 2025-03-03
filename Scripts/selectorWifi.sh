@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Obtener las redes WiFi disponibles
-networks=$(nmcli -t -f SSID dev wifi list)
+networks=$(nmcli -fields "SECURITY,SSID,RATE" dev wifi list | sed 1d | sed 's/  */ /g' | sed -E "s/WPA*.?\S/ /g" | sed "s/^--/ /g" | sed "s/  //g" | sed "/--/d")
 
 # Si no hay redes disponibles, mostrar un mensaje de error
 if [ -z "$networks" ]; then
