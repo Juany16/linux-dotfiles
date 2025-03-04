@@ -35,7 +35,7 @@ if [ "$CHOICE" == "Fondo aleatorio" ]; then
     # Guardar la ruta de la imagen seleccionada en un archivo temporal
     echo "$FONDO_RANDOM" > ~/.fondo_actual.txt 
     sleep 1
-    notify-send "Fondo y Tema" "Actualizados aleatoriamente"
+    notify-send "Fondo y Tema" "Actualizados aleatoriamente con: $FONDO_RANDOM"
 
 # Si elige "Elegir fondo"
 elif [ "$CHOICE" == "Elegir fondo" ]; then
