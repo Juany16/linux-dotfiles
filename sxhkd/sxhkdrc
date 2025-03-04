@@ -56,7 +56,7 @@ super + ctrl + c
 Pause
     ~/.config/Scripts/rofiMusica.sh
 
-super + t
+super + shift + t
     ~/.config/Scripts/rofiKeyBinding.sh
 
 # terminal emulator
