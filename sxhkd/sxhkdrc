@@ -30,8 +30,8 @@ super + c
 super + v
     rofi -show windowcd
 
-super + shift + t
-    rofi -show window
+#super + shift + t
+    #rofi -show window
 
 super + F4
   ~/.config/Scripts/powermenu
@@ -49,8 +49,15 @@ super + shift + f
 
 super + n
     ~/.config/Scripts/rofiNotas.sh
-super + shift + c
+
+super + ctrl + c
     ~/.config/Scripts/rofiModConfig.sh
+
+Pause
+    ~/.config/Scripts/rofiMusica.sh
+
+super + t
+    ~/.config/Scripts/rofiKeyBinding.sh
 
 # terminal emulator
 super + Return
@@ -90,8 +97,10 @@ super + alt + f
     ~/.config/Scripts/cambiar_fondo.sh; notify-send "Fondo y Tema" "Actualizados aleatoriamente"
 
 # i3lock
-super + shift + b
+Scroll_Lock
     ~/.config/Scripts/blocki3lock.sh
+#super + shift + b
+#    ~/.config/Scripts/blocki3lock.sh
     #~/.local/bin/blocki3lock.sh
     #i3lock -i "$(cat /tmp/fondo_actual.txt)"
 
@@ -152,7 +161,7 @@ super + alt + {Left,Down,Up,Right}
 	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
 
 # contract a window by moving one of its side inward
-super + alt + shift + {Left,Down,Up,Right}
+super + ctrl + {Left,Down,Up,Right}
 	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
 
 # move a floating window

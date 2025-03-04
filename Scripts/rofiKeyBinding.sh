@@ -1,0 +1,3 @@
+#!/bin/bash
+
+KEYBINDINGS=$(printf "Super+Flechas: Enfocar ventanas\nSuper+Shift+Flechas: Cambiar ventanas de lugar\nSuper+(a / s): Cambiar areas de trabajo\nSuper+Numeros: Cambiar areas de trabajo\nSuper+Shift+(a / s): Cambiar ventanas de areas de trabajo\nSuper+Shift+Numeros: Cambiar ventanas de areas de trabajo\nSuper+Tab: Cambiar a ultima area de trabajo\nSuper+q: Cerrar ventana\nSuper+f: Modo flotante\nSuper+t: Modo Tiling\nSuper+m: Modo pantalla completa\nSuper+Shift+r: Reiniciar BSPWM\nSuper+Shift+Esc: Reiniciar SXHKD\nSuper+Alt+Flechas: Agrandar una ventana\nSuper+Control+Flechas: Achicar una ventana\nSuper+Shift+(p / h / , / .): Enfocar: Padre, Hermano, Primero, Segundo" | rofi -dmenu -i -p "󰥻 ")
