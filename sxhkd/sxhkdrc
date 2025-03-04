@@ -49,6 +49,8 @@ super + shift + f
 
 super + n
     ~/.config/Scripts/rofiNotas.sh
+super + r
+    ~/.config/Scripts/rofiRepertorioGuitarra.sh
 
 super + ctrl + c
     ~/.config/Scripts/rofiModConfig.sh
