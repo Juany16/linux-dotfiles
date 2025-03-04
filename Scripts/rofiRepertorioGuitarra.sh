@@ -13,7 +13,7 @@ OPCIONES="  Agregar un nuevo tema\n  Borrar tema\n$(
 )"
 
 # Seleccionar opción en rofi
-SELECCION=$(echo -e "$OPCIONES" | rofi -dmenu -p "  ")
+SELECCION=$(echo -e "$OPCIONES" | rofi -dmenu -p " ")
 
 # Si la opción es "Crear nueva nota"
 if [[ "$SELECCION" == "  Agregar un nuevo tema" ]]; then
