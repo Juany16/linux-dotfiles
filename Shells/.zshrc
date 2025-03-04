@@ -109,6 +109,15 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias clima="python3 ~/.config/Scripts/ClimaWTTR-VCP.py"
 alias dolar="python3 ~/.config/Scripts/WsUSD.py"
+alias py3="python3"
+
+alias update="sudo apt update"
+alias upgrade="sudo apt upgrade"
+
+alias gs="git status"
+alias ga="git add"
+alias gc="git commit -m"
+alias gp="git push"
 
 wal -R -q -e
 #pfetch
