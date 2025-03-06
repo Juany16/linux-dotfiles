@@ -16,7 +16,7 @@ if ! command -v wal &> /dev/null; then
 fi
 
 # Opciones para Rofi: Elegir entre fondo aleatorio o fondo específico
-CHOICE=$(echo -e "Fondo aleatorio\nElegir fondo" | rofi -dmenu -p "󰸉 ")
+CHOICE=$(echo -e "Fondo aleatorio\nElegir fondo" | rofi -dmenu -i -p "󰸉 ")
 
 # Función para cambiar el fondo de pantalla
 set_wallpaper() {
@@ -35,13 +35,13 @@ if [ "$CHOICE" == "Fondo aleatorio" ]; then
     # Guardar la ruta de la imagen seleccionada en un archivo temporal
     echo "$FONDO_RANDOM" > ~/.fondo_actual.txt 
     sleep 1
-    notify-send "Fondo y Tema" "Actualizados aleatoriamente con: $FONDO_RANDOM"
+    notify-send "Fondo y Tema" "Actualizados aleatoriamente con:\n$FONDO_RANDOM"
 
 # Si elige "Elegir fondo"
 elif [ "$CHOICE" == "Elegir fondo" ]; then
     NOMBRE_FONDOS=$(find "$DIRECTORIO_IMAGENES" -type f -name "*.png" -exec basename {} \;)
     # Elegir un fondo de pantalla usando rofi
-    FONDO=$(echo "$NOMBRE_FONDOS" | rofi -dmenu -p "󰸉 ")
+    FONDO=$(echo "$NOMBRE_FONDOS" | rofi -dmenu -i -p "󰸉 ")
     
     if [ -n "$FONDO" ]; then
         FONDO_ELEGIDO=$(find "$DIRECTORIO_IMAGENES" -type f -name "$FONDO")
@@ -49,7 +49,7 @@ elif [ "$CHOICE" == "Elegir fondo" ]; then
         # Guardar la ruta de la imagen seleccionada en un archivo temporal
         echo "$FONDO_ELEGIDO" > ~/.fondo_actual.txt 
         sleep 1
-        notify-send "Fondo y Tema" "Actualizados con: $FONDO"
+        notify-send "Fondo y Tema" "Actualizados con:\n$FONDO"
     else
         echo "No seleccionaste ningún fondo."
     fi

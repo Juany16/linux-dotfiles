@@ -13,11 +13,11 @@ OPCIONES="  Agregar un nuevo tema\n  Borrar tema\n$(
 )"
 
 # Seleccionar opción en rofi
-SELECCION=$(echo -e "$OPCIONES" | rofi -dmenu -p " ")
+SELECCION=$(echo -e "$OPCIONES" | rofi -dmenu -i -p " ")
 
 # Si la opción es "Crear nueva nota"
 if [[ "$SELECCION" == "  Agregar un nuevo tema" ]]; then
-    NOMBRE_NOTA=$(rofi -dmenu -p "Nombre del tema: ")
+    NOMBRE_NOTA=$(rofi -dmenu -i -p "Nombre del tema: ")
     if [ -n "$NOMBRE_NOTA" ]; then
         RUTA_NOTA="$DIR_NOTAS/$NOMBRE_NOTA.txt"
         touch "$RUTA_NOTA"
@@ -27,11 +27,11 @@ if [[ "$SELECCION" == "  Agregar un nuevo tema" ]]; then
     fi
 # Si se selecciona "Borrar nota"
 elif [[ "$SELECCION" == "  Borrar tema" ]]; then
-    NOTA_A_BORRAR=$(find "$DIR_NOTAS" -type f -name "*.txt" -exec basename {} \; | rofi -dmenu -p "Seleccioná el tema a borrar: ")
+    NOTA_A_BORRAR=$(find "$DIR_NOTAS" -type f -name "*.txt" -exec basename {} \; | rofi -dmenu -i -p "Seleccioná el tema a borrar: ")
     if [ -n "$NOTA_A_BORRAR" ]; then
         RUTA_NOTA="$DIR_NOTAS/$NOTA_A_BORRAR"
         # Confirmación antes de borrar
-        CONFIRMACION=$(echo -e "Sí\nNo" | rofi -dmenu -p "Borrar: $NOTA_A_BORRAR?")
+        CONFIRMACION=$(echo -e "Sí\nNo" | rofi -dmenu -i -p "Borrar: $NOTA_A_BORRAR?")
         if [ "$CONFIRMACION" == "Sí" ]; then
             rm "$RUTA_NOTA"
             notify-send "Repertorio" "Tema borrado: \n<b>$NOTA_A_BORRAR</b>"

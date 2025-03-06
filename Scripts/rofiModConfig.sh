@@ -8,9 +8,12 @@ PICOM="/home/juani/.config/picom/picom.conf"
 ROFI="/home/juani/.config/rofi/config.rasi"
 SXHKD="/home/juani/.config/sxhkd/sxhkdrc"
 ZSH="/home/juani/.zshrc"
-#RANGER="/home/juani/.config/ranger/"
 
-OPCIONES=$(printf "Bspwm\nPolybar\nDunst\nKitty\nPicom\nRofi\nSxhkd\nZSH" | rofi -dmenu -i -p " ")
+SCRIPTS="/home/juani/.config/Scripts/"
+CONFIGS="/home/juani/.config/"
+RANGER="/home/juani/.config/ranger/"
+
+OPCIONES=$(printf "Bspwm\nPolybar\nDunst\nKitty\nPicom\nRofi\nSxhkd\nZSH\nScripts\nConfigs\nRanger" | rofi -dmenu -i -p " ")
 
 case "$OPCIONES" in
   "Bspwm") kitty -e nvim "$BSPWM";;
@@ -21,5 +24,8 @@ case "$OPCIONES" in
   "Rofi") kitty -e nvim "$ROFI";;
   "Sxhkd") kitty -e nvim "$SXHKD";;
   "ZSH") kitty -e nvim "$ZSH";;
+  "Scripts") kitty -e ranger "$SCRIPTS";;
+  "Configs") kitty -e ranger "$CONFIGS";;
+  "Ranger") kitty -e ranger "$RANGER";;
   *) exit 1 ;;
 esac
