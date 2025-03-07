@@ -23,8 +23,10 @@ set_wallpaper() {
     local wallpaper="$1"
     
     feh --bg-fill "$wallpaper"
+    sleep 1
     wal -q -i "$wallpaper"
-    bspc wm -r
+    eww reload
+    #bspc wm -r
 }
 
 # Si elige "Fondo aleatorio"
