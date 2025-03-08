@@ -124,5 +124,6 @@ alias ga="git add"
 alias gc="git commit -m"
 alias gp="git push"
 
+#(cat ~/.cache/wal/sequences &)
 wal -R -q -e
 #pfetch

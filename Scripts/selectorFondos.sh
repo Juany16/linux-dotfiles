@@ -23,8 +23,9 @@ set_wallpaper() {
     local wallpaper="$1"
     
     feh --bg-fill "$wallpaper"
-    sleep 1
+    #sleep 1
     wal -q -i "$wallpaper"
+    #sleep 1
     #eww reload
     bspc wm -r
 }
