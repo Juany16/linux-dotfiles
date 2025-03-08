@@ -31,10 +31,12 @@ bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 
 # Colores
+# pywal
 bspc config focused_border_color "$color7"
 bspc config normal_border_color "$color0"
 
-#bspc config focused_border_color "#A1A1A1"
+# colores neutros estaticos
+#bspc config focused_border_color "#aaaaaa"
 #bspc config normal_border_color "#161616"
 #bspc config presel_feedback_color "#1ABB9B"
 
@@ -55,4 +57,6 @@ bspc rule -a Xfce4-terminal state=floating center=on
 
 # RECARGAS y SCRIPTS
 wal -R #-q -e
-#wal -q -i ~/Imágenes/Fondos/ # cambia el fondo auntomaticamente cuando recargo la config
+#pkill DailyList
+#~/Documentos/Programación/To-Do-List/Daily-List-MOD/To-Do-List-Final/App/dist/DailyList/DailyList &
+

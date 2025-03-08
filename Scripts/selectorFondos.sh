@@ -25,8 +25,8 @@ set_wallpaper() {
     feh --bg-fill "$wallpaper"
     sleep 1
     wal -q -i "$wallpaper"
-    eww reload
-    #bspc wm -r
+    #eww reload
+    bspc wm -r
 }
 
 # Si elige "Fondo aleatorio"

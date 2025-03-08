@@ -11,9 +11,10 @@ ZSH="/home/juani/.zshrc"
 
 SCRIPTS="/home/juani/.config/Scripts/"
 CONFIGS="/home/juani/.config/"
+EWW="/home/juani/.config/eww/"
 RANGER="/home/juani/.config/ranger/"
 
-OPCIONES=$(printf "Bspwm\nPolybar\nDunst\nKitty\nPicom\nRofi\nSxhkd\nZSH\nScripts\nConfigs\nRanger" | rofi -dmenu -i -p " ")
+OPCIONES=$(printf "Bspwm\nPolybar\nDunst\nKitty\nPicom\nRofi\nSxhkd\nZSH\nScripts\nConfigs\nEww\nRanger" | rofi -dmenu -i -p " ")
 
 case "$OPCIONES" in
   "Bspwm") kitty -e nvim "$BSPWM";;
@@ -26,6 +27,7 @@ case "$OPCIONES" in
   "ZSH") kitty -e nvim "$ZSH";;
   "Scripts") kitty -e ranger "$SCRIPTS";;
   "Configs") kitty -e ranger "$CONFIGS";;
+  "Eww") kitty -e ranger "$EWW";;
   "Ranger") kitty -e ranger "$RANGER";;
   *) exit 1 ;;
 esac

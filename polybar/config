@@ -155,7 +155,7 @@ content = " "
 ;content = " "
 ;content = "  "
 ;click-left = ~/.config/polybar/Scripts/EWWajs.sh 
-click-left = eww open ajustes
+click-left = eww close ajustes || eww open ajustes
 click-right = eww close ajustes
 
 [module/apagado]
@@ -163,7 +163,7 @@ type = custom/text
 content-foreground = ${colors.foreground}
 content = ""
 ;click-left = ~/.config/polybar/Scripts/EWWmenu.sh
-click-left = eww open power
+click-left = eww close power || eww open power
 click-right = eww close power
 
 [module/calendario]
@@ -172,7 +172,7 @@ content-foreground = ${colors.foreground}
 ;content = ""
 content = ""
 ;click-left = ~/.config/polybar/Scripts/EWWcal.sh 
-click-left = eww open date
+click-left = eww close date || eww open date
 click-right = eww close date
 
 [module/brillo]
@@ -226,7 +226,7 @@ type = custom/text
 content-foreground = ${colors.foreground}
 content = " "
 ;click-left = ~/.config/polybar/Scripts/EWWapps.sh
-click-left = eww open apps
+click-left = eww close apps || eww open apps
 click-right = eww close apps
 
 [module/appsW]
@@ -235,7 +235,7 @@ content-foreground = ${colors.foreground}
 content = " "
 ;content = " "
 ;click-left = ~/.config/polybar/Scripts/EWWappsW.sh
-click-left = eww open appsW
+click-left = eww close appsW || eww open appsW
 click-right = eww close appsW
 
 [module/chats]
@@ -243,7 +243,7 @@ type = custom/text
 content-foreground = ${colors.foreground}
 content = "󰭹 "
 ;click-left = ~/.config/polybar/Scripts/EWWct.sh
-click-left = eww open chats
+click-left = eww close chats || eww open chats
 click-right = eww close chats
 
 [module/wpp]

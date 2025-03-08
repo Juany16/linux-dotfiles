@@ -16,8 +16,8 @@ if [ -n "$RUTA_IMAGEN" ]; then
     feh --bg-fill "$RUTA_IMAGEN"
     fondo=$(~/.config/Scripts/obtener_fondo.sh)
     wal -q -i "$fondo"
-    eww reload
-    #bspc wm -r
+    #eww reload
+    bspc wm -r
 else
     echo "No se encontraron imágenes en el directorio especificado."
 fi
