@@ -84,19 +84,19 @@ font-2 = FontAwesome:size=11;3
 font-3 = HackNerdFont:size=11;2
 
 ; MODULOS DE LA BARRA
-modules-left = rofi bspwm i3 apps appsW chats
+modules-left = rofi bspwm i3 apps appsW chats 
 modules-center = xwindow
 modules-right = actualizaciones ajustes pulseaudio mic-volume brillo wifi notificaciones calendario date apagado
 
 ; MODULO DE APPS EN 2DO PLANO
 tray-position = center
 tray-offset-x = -645
-tray-padding = 0
-tray-scale = 1.0
 tray-background = ${colors.background}
 tray-foreground = ${colors.foreground}
+tray-detached = true
+tray-padding = 0
+tray-scale = 1.0
 ;tray-sort = center
-;#0063ff
 
 ; para que funcione bien la PANTALLA COMPLETA
 wm-restack = bspwm
@@ -117,7 +117,6 @@ cursor-scroll = ns-resize
 
 ; MODULOS DE POLYBAR
 ; Propios
-
 [module/sep]
 type = custom/script
 interval = 1

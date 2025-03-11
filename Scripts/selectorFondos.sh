@@ -38,7 +38,7 @@ if [ "$CHOICE" == "Fondo aleatorio" ]; then
     # Guardar la ruta de la imagen seleccionada en un archivo temporal
     echo "$FONDO_RANDOM" > ~/.fondo_actual.txt 
     sleep 1
-    notify-send "Fondo y Tema" "Actualizados aleatoriamente con:\n$FONDO_RANDOM"
+    notify-send "Fondo y Tema" "Actualizados aleatoriamente con:\n$FONDO_RANDOM" -u low
 
 # Si elige "Elegir fondo"
 elif [ "$CHOICE" == "Elegir fondo" ]; then
@@ -52,7 +52,7 @@ elif [ "$CHOICE" == "Elegir fondo" ]; then
         # Guardar la ruta de la imagen seleccionada en un archivo temporal
         echo "$FONDO_ELEGIDO" > ~/.fondo_actual.txt 
         sleep 1
-        notify-send "Fondo y Tema" "Actualizados con:\n$FONDO"
+        notify-send "Fondo y Tema" "Actualizados con:\n$FONDO" -u low
     else
         echo "No seleccionaste ningún fondo."
     fi

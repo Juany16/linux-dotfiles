@@ -10,20 +10,22 @@
 (defpoll calendar_month :interval "10h" "date '+%m'")
 (defpoll calendar_year :interval "10h" "date '+%Y'")
 
+;; Clima Var
+(defpoll infoClima :interval "1h" "~/.config/eww/scripts/weather.sh")
+
 ;; WIDGETS
 
 ;; Menu apagado
 (defwidget menu []
   (box :class "padre" :space-evenly false :orientation "v"
-    (box :class "encabezado" :space-evenly false
-      (label :text "Menú de apagado" :class "titulo")
-      (button :class "salir" :onclick "eww open power --toggle" " ")
+    (box :class "cuerpo" :orientation "h" :spacing 10 :halign "center" :valing "center" :space-evenly false
+      (button :class "botones" :hexpand "false" :onclick "~/.config/Scripts/blocki3lock.sh" "")
+      (button :class "botones" :onclick "eww open power --toggle" "")
     )
-    (box :class "cuerpo" :orientation "v" :halign "center" :valing "center" :space-evenly false
-      (button :class "botones" :hexpand "false" :onclick "~/.config/Scripts/blocki3lock.sh" "  Bloquear")
-      (button :class "botones" :hexpand "false" :onclick "bspc quit" "󰍃  Cerrar Sesión") 
-      (button :class "botones" :hexpand "false":onclick "reboot" "  Reiniciar")
-      (button :class "botones" :vexpand "false" :onclick "poweroff" "  Apagar")
+    (box :class "cuerpo" :orientation "h" :spacing 10 :halign "center" :valing "center" :space-evenly false
+      (button :class "botones" :hexpand "false" :onclick "bspc quit" "󰍃")
+      (button :class "botones" :hexpand "false":onclick "reboot" "")
+      (button :class "botones" :vexpand "false" :onclick "poweroff" "")
     )
   )
 )
@@ -93,7 +95,6 @@
   )
 )
 
-
 ;; Calendario
 (defwidget time []
     (box :class "date-container" :orientation "h" :space-evenly false :halign "center"
@@ -111,7 +112,15 @@
               :month {calendar_month ?: "1"}
               :year {calendar_year ?: "2023"}
     )
-;;    (button :class "botones" :onclick "eww close date" "")
+  )
+)
+
+;; Clima
+(defwidget clima []
+  (box :class "clima" :space-evenly false :orientation "v"
+    (box :class "cuerpo" :orientation "v" :halign "center" :valing "center" :space-evenly false
+      (label :text infoClima)
+    )
   )
 )
 
@@ -119,8 +128,10 @@
   (box :class "date"
        :orientation "v"
        :space-evenly false
+       :spacing 5
     (time)
     (cal) 
+    (clima)
   )
 )
 

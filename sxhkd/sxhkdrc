@@ -29,9 +29,8 @@ super + c
 
 super + v
     rofi -show windowcd
-
-#super + shift + t
-    #rofi -show window
+super + shift + v
+    rofi -show window
 
 super + F4
   ~/.config/Scripts/powermenu
@@ -61,14 +60,11 @@ Pause
 super + shift + t
     ~/.config/Scripts/rofiKeyBinding.sh
 
-# terminal emulator
 super + Return
     kitty
 super + shift + Return
     xfce4-terminal
-    #bspc rule -a kitty state=floating center=on rectangle=600x400+0+0 && kitty
 
-# Launch file manager
 super + e
     kitty -e ranger
 super + shift + e
@@ -76,12 +72,6 @@ super + shift + e
 
 super + b
     brave-browser
-
-#super + r
-#    nm-connection-editor
-
-#super + v
-#    code
 
 super + d
     ~/Documentos/Programación/To-Do-List/Daily-List-MOD/To-Do-List-Final/App/dist/DailyList/DailyList
@@ -101,23 +91,19 @@ super + alt + f
 # i3lock
 Scroll_Lock
     ~/.config/Scripts/blocki3lock.sh
-#super + shift + b
-#    ~/.config/Scripts/blocki3lock.sh
-    #~/.local/bin/blocki3lock.sh
-    #i3lock -i "$(cat /tmp/fondo_actual.txt)"
 
 #
 # STATE / FLAGS
 #
 
 # set the window state
-super + {t,f,m}
-	bspc node -t {tiled,floating,fullscreen}
-
-#super + {t,shift + t,s,f}
-#	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+super + {t,ctrl + t,f,m}
+	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 
 # set the node flags
+super + ctrl + p
+	bspc node -g sticky
+
 #super + ctrl + {m,x,y,z}
 #	bspc node -g {marked,locked,sticky,private}
 
@@ -140,8 +126,8 @@ super + shift + {a,s}
     bspc node -d {prev,next}
 
 # focus the last node/desktop
-super + {Tab}
-	bspc {desktop} -f last
+super + Tab
+	bspc desktop -f last
 #{grave,} {node,}
 
 # focus or send to the given desktop
@@ -170,10 +156,13 @@ super + ctrl + {Left,Down,Up,Right}
 #super + {Left,Down,Up,Right}
 #	bspc node -v {-20 0,0 20,0 -20,20 0}
 
-# NO SÉ QUE ES
+#
+# ALTERNAR EL LAYOUT
+#
+
 # alternate between the tiled and monocle layout
-#super + m
-	#bspc desktop -l next
+super + shift + m
+	bspc desktop -l next
 
 # send the newest marked node to the newest preselected node
 #super + y
