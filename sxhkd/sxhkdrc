@@ -54,6 +54,8 @@ super + ctrl + c
 
 Pause
     ~/.config/Scripts/rofiMusica.sh
+super + Pause
+    ~/.config/Scripts/rofiYT.sh
 
 super + shift + t
     ~/.config/Scripts/rofiKeyBinding.sh

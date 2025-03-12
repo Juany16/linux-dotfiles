@@ -1,20 +1,21 @@
 #!/bin/bash
 
-artista=$(playerctl metadata artist)
-titulo=$(playerctl metadata title)
+estado=$(playerctl --player=spotify --ignore-player=brave.instance6015 status)
+artista=$(playerctl --player=spotify --ignore-player=brave.instance6015 metadata artist)
+titulo=$(playerctl --player=spotify --ignore-player=brave.instance6015 metadata title)
 
 # Verificar si no hay canción sonando
 if [[ -z "$titulo" || -z "$artista" ]]; then
-    artista="Playerctl"
-    titulo="No hay reproducción"
+    artista="Spotify"
+    titulo="Spotify no está abierto"
 fi
 
 opcion=$(echo -e "$artista\n$titulo\n \n \n \n " | rofi -dmenu -i -selected-row 3 -p "󰝚 ")
 
 case "$opcion" in
-  " ") playerctl previous && notify-send "Anterior" "Playerctl" -u low;;
-  " ") playerctl play && notify-send "Reproduciendo" "<b>$artista</b>\n$titulo" -u low;;
-  " ") playerctl pause && notify-send "Pausa" "<b>$artista</b>\n$titulo" -u low;;
-  " ") playerctl next && notify-send "Siguiente" "Playerctl" -u low;;
+  " ") playerctl -p spotify -i brave.instance6015 previous && notify-send "Anterior" "Spotify" -u low;;
+  " ") playerctl -p spotify -i brave.instance6015 play && notify-send "Spotify reproduciendo" "<b>$artista</b>\n$titulo" -u low;;
+  " ") playerctl -p spotify -i brave.instance6015 pause && notify-send "Spotify pausado" "<b>$artista</b>\n$titulo" -u low;;
+  " ") playerctl -p spotify -i brave.instance6015 next && notify-send "Siguiente" "Spotify" -u low;;
   *) exit 1;;
 esac
