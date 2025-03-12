@@ -48,11 +48,11 @@ bspc rule -a Tk desktop=^6 follow=on
 bspc rule -a discord desktop=^5 follow=on
 bspc rule -a TelegramDesktop desktop=^5 follow=on
 bspc rule -a obs desktop=^4 follow=on
-bspc rule -a Pavucontrol desktop=^4 follow=on
-bspc rule -a Nm-connection-editor desktop=^4 follow=on
-bspc rule -a Blueman-manager desktop=^4 follow=on
+bspc rule -a Pavucontrol desktop=^4 state=pseudo_tiled follow=on
+bspc rule -a Nm-connection-editor desktop=^4 state=pseudo_tiled follow=on
+bspc rule -a Blueman-manager desktop=^4 state=pseudo_tiled follow=on
 bspc rule -a Xfce4-terminal state=floating center=on
-bspc rule -a Spotify desktop=^5 state=floating centre=on follow=on
+bspc rule -a Spotify desktop=^5 state=pseudo_tiled follow=on
 #bspc rule -a scrcpy desktop=^4 follow=on state=floating center=on
 #bspc rule -a kdeconnect-settings desktop=^4 follow=on
 
