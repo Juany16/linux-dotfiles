@@ -25,7 +25,6 @@ super + Escape
 
 super + c
     rofi -show calc -no-show-match -no-sort
-#    gnome-calculator
 
 super + v
     rofi -show windowcd
@@ -38,7 +37,6 @@ super + F4
 
 super + p
     ~/.config/Scripts/elegirAudio.sh
-    #pavucontrol
 
 super + w
     ~/.config/Scripts/selectorWifi.sh
@@ -92,6 +90,9 @@ super + alt + f
 Scroll_Lock
     ~/.config/Scripts/blocki3lock.sh
 
+super + shift + c
+    ~/.config/Scripts/selectorColores.sh
+
 #
 # STATE / FLAGS
 #
@@ -103,6 +104,10 @@ super + {t,ctrl + t,f,m}
 # set the node flags
 super + ctrl + p
 	bspc node -g sticky
+#super + ctrl + e
+#    bspc node -g hidden=on
+#super + alt + e
+#    bspc node -g hidden=off
 
 #super + ctrl + {m,x,y,z}
 #	bspc node -g {marked,locked,sticky,private}
