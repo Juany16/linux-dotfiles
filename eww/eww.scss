@@ -156,3 +156,31 @@ calendar:indeterminate{
   padding: 0.5rem 0.2rem 0.5rem 0.2rem;
 }
 
+// Bloqueo de Pantalla
+.date-container2 {
+    font-family: Ubuntu Regular;
+    font-weight: Bolder;
+    //font-size: 1rem;
+    background-color: $background;
+    color: $foreground;
+    //border: 4px solid $foreground;
+    border-radius: 0.5rem;
+    margin: 5px 0;
+    padding: 0.9rem 0.9rem 0.9rem 0.9rem;
+  }
+
+.hora-bloqueo {
+    font-size: 70px;
+    //background-color: $background;
+    //color: $foreground;
+    margin: 5px 0;
+    padding: 0.9rem 0.9rem 0.1rem 0.9rem;
+}
+
+.fecha-bloqueo {
+    font-size: 20px;
+    //background-color: $background;
+    //color: $foreground;
+    margin: 5px 0;
+    padding: 0.1rem 0.9rem 0.9rem 0.9rem; // arriba, derecha, abajo, izquierda
+}

@@ -6,6 +6,9 @@
 (defpoll lithour :interval "30m" "date +%H")
 (defpoll litmin :interval "30s" "date +%M")
 
+(defpoll hora :interval "1s" "date '+%H:%M'")
+(defpoll fecha :interval "1s" "date '+%a. %d / %m'")
+
 (defpoll calendar_day :interval "10h" "date '+%d'")
 (defpoll calendar_month :interval "10h" "date '+%m'")
 (defpoll calendar_year :interval "10h" "date '+%Y'")
@@ -135,7 +138,22 @@
   )
 )
 
+;; Reloj de Bloqueo
+(defwidget time2 []
+    (box :class "date-container2" :orientation "v" :space-evenly false :halign "center"
+      (label :class "hora-bloqueo" :text "${hora}")
+      (label :class "fecha-bloqueo" :text "${fecha}")
+      ;;(label :class "fecha-bloqueo" :text "${infoClima}")
+    )
+)
+
 ;; VENTANAS
+
+;; Reloj
+(defwindow reloj
+  :geometry (geometry :x "0px" :y "200px" :anchor "top center")
+  :wm-ignore true
+(time2))
 
 ;; Calendario
 (defwindow date
