@@ -1,8 +1,8 @@
 #!/bin/bash
 
-estado=$(playerctl --player=spotify --ignore-player=brave.instance6015 status)
-artista=$(playerctl --player=spotify --ignore-player=brave.instance6015 metadata artist)
-titulo=$(playerctl --player=spotify --ignore-player=brave.instance6015 metadata title)
+estado=$(playerctl --player=spotify status)
+artista=$(playerctl --player=spotify metadata artist)
+titulo=$(playerctl --player=spotify metadata title)
 
 # Verificar si no hay canción sonando
 if [[ -z "$titulo" || -z "$artista" ]]; then
