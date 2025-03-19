@@ -52,6 +52,9 @@ super + r
 super + ctrl + c
     ~/.config/Scripts/rofiModConfig.sh
 
+super + alt + p
+    ~/.config/Scripts/ocultarPolybar.sh
+
 Pause
     ~/.config/Scripts/rofiMusica.sh
 super + Pause

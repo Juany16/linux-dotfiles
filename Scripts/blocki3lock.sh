@@ -4,6 +4,8 @@
 playerctl pause
 eww close-all
 dunstctl set-paused true
+pkill xfce4-notifyd
+#pkill dunst
 
 # Bloquear
 i3lock -i "$(cat ~/.fondo_actual.txt)" -u &
@@ -15,6 +17,8 @@ while pgrep -x "i3lock" > /dev/null; do
 done
 
 # Reanudar despues de desbloquear
-eww close reloj
 dunstctl set-paused false
+
+#eww close reloj
+#dunst -conf ~/.config/dunst/dunstrc &
 
