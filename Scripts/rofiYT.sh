@@ -13,9 +13,9 @@ fi
 opcion=$(echo -e "$artista\n$titulo\n \n \n \n " | rofi -dmenu -i -selected-row 3 -p "󰝚 ")
 
 case "$opcion" in
-  " ") playerctl -p brave.instance6015 -i spotify previous && notify-send "Anterior" "YouTube" -u low;;
-  " ") playerctl -p brave.instance6015 -i spotify play && notify-send "YouTube reproduciendo" "<b>$artista</b>\n$titulo" -u low;;
-  " ") playerctl -p brave.instance6015 -i spotify pause && notify-send "YouTube pausado" "<b>$artista</b>\n$titulo" -u low;;
-  " ") playerctl -p brave.instance6015 -i spotify next && notify-send "Siguiente" "YouTube" -u low;;
+  " ") playerctl -i spotify previous && notify-send "Anterior" "YouTube" -u low;;
+  " ") playerctl -i spotify play && notify-send "YouTube reproduciendo" "<b>$artista</b>\n$titulo" -u low;;
+  " ") playerctl -i spotify pause && notify-send "YouTube pausado" "<b>$artista</b>\n$titulo" -u low;;
+  " ") playerctl -i spotify next && notify-send "Siguiente" "YouTube" -u low;;
   *) exit 1;;
 esac
