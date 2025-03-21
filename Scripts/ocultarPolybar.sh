@@ -3,6 +3,6 @@
 opcion=$(echo -e "Ocultar barra\nMostrar barra" | rofi -dmenu -i -p "polybar")
 
 case "$opcion" in
-  "Ocultar barra") pkill polybar && bspc config top_padding 0;;
-  "Mostrar barra") bspc wm -r;;
+  "Ocultar barra") pkill polybar && bspc config top_padding 0 && dunstctl set-paused true;;
+  "Mostrar barra") bspc wm -r && dunstctl set-paused false;;
 esac
