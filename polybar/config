@@ -132,8 +132,8 @@ format = <label>
 format-background = ${colors.background}
 format-foreground = ${colors.foreground}
 exec = ~/.config/polybar/Scripts/notificaciones.sh
-click-left = notify-send "Notificaciones" "notificaciones silenciadas"; sleep 3; dunstctl set-paused true
-click-right = notify-send "Notificaciones" "notificaciones activadas"; dunstctl set-paused false
+click-left = notify-send "Modo No Molestar" "Activado"; sleep 3; dunstctl set-paused true
+click-right = notify-send "Modo No Molestar" "Desactivado"; dunstctl set-paused false
 click-middle= dunstctl history-pop
 
 [module/actualizaciones]

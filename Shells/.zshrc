@@ -109,6 +109,8 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias clima="python3 ~/.config/Scripts/ClimaWTTR-VCP.py"
 alias dolar="python3 ~/.config/Scripts/WsUSD.py"
+alias bloqp="bash ~/.config/Scripts/BloqueoPaginas.sh"
+alias dsloqp="bash ~/.config/Scripts/DesbloqueoPaginas.sh"
 alias py3="python3"
 
 alias upd="sudo apt update"
