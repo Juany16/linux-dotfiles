@@ -52,8 +52,8 @@ super + r
 super + ctrl + c
     ~/.config/Scripts/rofiModConfig.sh
 
-#super + alt + p
-#    ~/.config/Scripts/ocultarPolybar.sh
+super + alt + p
+    ~/.config/Scripts/ocultarPolybar.sh
 
 Pause
     ~/.config/Scripts/rofiMusica.sh
@@ -88,8 +88,8 @@ Print
 super + Print
     xfce4-screenshooter -r
 
-super + alt + f
-    ~/.config/Scripts/ocultarPolybar.sh
+#super + alt + f
+    #~/.config/Scripts/ocultarPolybar.sh
     #~/.config/Scripts/cambiar_fondo.sh; notify-send "Fondo y Tema" "Actualizados aleatoriamente"
 
 # i3lock

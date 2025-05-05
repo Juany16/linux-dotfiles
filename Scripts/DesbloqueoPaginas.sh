@@ -8,5 +8,6 @@ for site in "${BLOCK_LIST[@]}"; do
     sudo sed -i "/$site/d" $HOSTS_FILE
 done
 
-#notify-send "Sitios desbloqueados" "Reddit y otros fueron desbloqueados" -u normal
+echo "Modo concentración desactivado páginas desbloqueadas"
+#notify-send "Modo concentración desactivado" "páginas desbloqueadas"
 

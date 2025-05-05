@@ -10,5 +10,6 @@ for site in "${BLOCK_LIST[@]}"; do
     fi
 done
 
-#notify-send "Sitios bloqueados" "Reddit y otros fueron bloqueados" -u normal
+echo "Modo concentración activado páginas bloqueadas"
+#notify-send "Modo concentración activado" "páginas bloqueadas"
 
