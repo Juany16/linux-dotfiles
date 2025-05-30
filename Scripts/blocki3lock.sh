@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Matar programas antes de bloquear
-playerctl pause
+playerctl -a pause
 eww close-all
 dunstctl set-paused true
 
