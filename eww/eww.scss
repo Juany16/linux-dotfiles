@@ -5,9 +5,17 @@
 // Padre
 .padre{
     background-color: $background;
-    border-radius: 8px;
-    border: 4px solid $foreground;
+    border-radius: 10px;
+    border: 2px solid $foreground;
     padding: 8px;
+}
+
+// Hijo
+.hijo{
+    margin: 10px 5px 5px 5px;             // arriba, derecha, abajo, izquierda
+    border: 2px solid $foreground;
+    border-radius: 0.5rem;
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem; // arriba, derecha, abajo, izquierda
 }
 
 // Encabezado
@@ -18,43 +26,53 @@
 
 // Titulo
 .titulo{
-    margin-right: 50px;
-    margin-left: 1px;
+    //margin-right: 50px;
+    margin-left: 5px;
     color: $foreground;
 }
+
+/* Cuerpo
+.cuerpo{
+    margin: 10px 5px 5px 5px;             // arriba, derecha, abajo, izquierda
+    border: 2px solid $foreground;
+    border-radius: 0.3rem;
+    padding: 0.5rem 0.9rem 0.5rem 0.9rem; // arriba, derecha, abajo, izquierda
+}*/
 
 // Menu de Apagado
 .power{
   //background-color: transparent;
   font-size: 25px;
-  border-radius: 0.5rem;
+  border-radius: 10px;
+  //border-radius: 0.5rem;
 }
 
 // Ajustes
 .ajustes{
-  border-radius: 0.5rem;
+  font-size: 25px;
+  border-radius: 10px;
+  //border-radius: 0.5rem;
 }
 
 // Chats
 .chats{
-  border-radius: 0.5rem;
+  font-size: 25px;
+  border-radius: 10px;
+  //border-radius: 0.5rem;
 }
 
 // Apps Web
 .appsW{
-  border-radius: 0.5rem;
+  font-size: 25px;
+  border-radius: 10px;
+  //border-radius: 0.5rem;
 }
 
 // Apps
 .apps{
-  border-radius: 0.5rem;
-}
-
-// Cajas de los menus
-.menus{
-  background-color: $background;
-  border: 4px solid $foreground;
-  padding: 0 0 0 0; 
+  font-size: 25px;
+  border-radius: 10px;
+  //border-radius: 0.5rem;
 }
 
 // Botones de todos los widgets
@@ -64,10 +82,12 @@
   color: $foreground;
   //font-size: 20px;
   border-radius: 0.4rem;
-  //border: 0px solid $background;
+  //border: 2px solid $background;
   //outline: none;
-  margin-top: 4px;
-  padding: 8px;
+  //margin-top: 4px;
+  margin: 5px 5px 5px 5px;
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem; // arriba, derecha, abajo, izquierda
+  //padding: 8px;
 
   &:active{
     background-color: $background;
@@ -97,9 +117,10 @@
 .date{
   background-color: $background;
   color: #ffffff;
-  border: 4px solid $foreground;
-  border-radius: 0.5rem;
-  padding: 0.5rem 0.9rem 0.5rem 0.9rem;
+  border: 2px solid $foreground;
+  border-radius: 10px;
+  //border-radius: 0.5rem;
+  padding: 0.5rem 0.9rem 0.5rem 0.9rem; // arriba, derecha, abajo, izquierda
 }
 
 .date-container {
@@ -115,7 +136,7 @@
   background-color: $foreground;
   color: #ffffff;
   border-radius: 0.3rem;
-  padding: 0.2rem 0.2rem 0.2rem 0.2rem;
+  padding: 0.2rem 0.2rem 0.2rem 0.2rem; // arriba, derecha, abajo, izquierda
 
   .cal{
     background-color: $background;
@@ -153,7 +174,19 @@ calendar:indeterminate{
   margin: 5px 0;
   border: 2px solid $foreground;
   border-radius: 0.3rem;
-  padding: 0.5rem 0.2rem 0.5rem 0.2rem;
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem; // arriba, derecha, abajo, izquierda
+}
+
+.to-do{
+  font-family: Ubuntu Regular;
+  //font-weight: Bolder;
+  font-size: 16px;
+  background-color: $background;
+  color: $foreground;
+  margin: 10px 5px 5px 5px;             // arriba, derecha, abajo, izquierda
+  border: 2px solid $foreground;
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem; // arriba, derecha, abajo, izquierda
 }
 
 // Bloqueo de Pantalla
@@ -161,7 +194,8 @@ calendar:indeterminate{
     font-family: Ubuntu Regular;
     font-weight: Bolder;
     //font-size: 1rem;
-    background-color: $background;
+    //background-color: $background;
+    background-color: transparent;
     color: $foreground;
     //border: 4px solid $foreground;
     border-radius: 0.5rem;

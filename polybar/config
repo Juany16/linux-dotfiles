@@ -1,32 +1,10 @@
-;==========================================================
-;
-; THIS IS AN EXAMPLE CONFIGURATION FILE!
-; IT IS NOT SUPPOSED TO WORK OUT OF THE BOX SINCE IS CONTAINS
-; SETTINGS THAT ARE SPECIFIC TO THE MACHINE WHICH WAS USED
-; TO GENERATE IT.
-; Please refer to the web documentation hosted at:
-; https://github.com/polybar/polybar#configuration
-; and
-; https://github.com/polybar/polybar/wiki/Configuration
-; if you want to automatically generate one for you.
-;
-;==========================================================
-;
-;
-;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
-;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
-;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
-;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
-;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
-;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
-;
-;
-;   To learn more about how to configure Polybar
-;   go to https://github.com/polybar/polybar
-;
-;   The README contains a lot of information
-;
-;==========================================================
+#    ____       _       _                
+#   |  _ \ ___ | |_   _| |__   __ _ _ __ 
+#   | |_) / _ \| | | | | '_ \ / _` | '__|
+#   |  __/ (_) | | |_| | |_) | (_| | |   
+#   |_|   \___/|_|\__, |_.__/ \__,_|_|   
+#                 |___/                  
+#
 
 [colors]
 background = ${xrdb:color0:#222}
@@ -50,17 +28,17 @@ height = 30
 ;offset-x = 0%
 ;offset-y = 0%
 
-; Radio para bspwm
+; Radio para barra flotante
 ;radius = 5.0
-; Radio para i3wm
+; Radio para barra fija
 radius = 0.0
 
 fixed-center = true
 
 ; Para bspwm
-; Borde para i3wm
+; Borde para barra fija
 border-size = 0
-; Borde para bspwm
+; Borde para barra flotante
 ;border-size = 10
 border-color = #00000000
 
@@ -78,19 +56,19 @@ override-redirect = true
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-font-0 = Ubuntu Regular:pixelsize=10;2
+font-0 = Ubuntu Regular:pixelsize=10;1
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = FontAwesome:size=11;3
 font-3 = HackNerdFont:size=11;2
 
 ; MODULOS DE LA BARRA
-modules-left = rofi bspwm i3 apps appsW chats 
+modules-left = rofi bspwm to-do apps chats
 modules-center = xwindow
-modules-right = actualizaciones ajustes pulseaudio mic-volume brillo wifi notificaciones calendario date apagado
+modules-right = xset ajustes pulseaudio mic-volume brillo wifi notificaciones calendario date apagado
 
 ; MODULO DE APPS EN 2DO PLANO
 tray-position = center
-tray-offset-x = -645
+tray-offset-x = -420
 tray-background = ${colors.background}
 tray-foreground = ${colors.foreground}
 tray-detached = true
@@ -100,14 +78,12 @@ tray-scale = 1.0
 
 ; para que funcione bien la PANTALLA COMPLETA
 wm-restack = bspwm
-;wm-restack = i3
 
 ;scroll-up = bspwm-desknext
 ;scroll-down = bspwm-deskprev
 
 ;scroll-up = i3wm-wsnext
 ;scroll-down = i3wm-wsprev
-
 cursor-click = pointer
 cursor-scroll = ns-resize
 
@@ -135,17 +111,28 @@ exec = ~/.config/polybar/Scripts/notificaciones.sh
 click-left = notify-send "Modo No Molestar" "Activado"; sleep 3; dunstctl set-paused true
 click-right = notify-send "Modo No Molestar" "Desactivado"; dunstctl set-paused false
 click-middle= dunstctl history-pop
+;click-middle= eww close centro || eww open centro
 
-[module/actualizaciones]
+[module/xset]
 type = custom/script
-interval = 10800
-;format =   <label>
+interval = 1
 format = <label>
-;format =   <label>
-format-background = ${colors.model-background}
+format-background = ${colors.background}
 format-foreground = ${colors.foreground}
-exec = bash ~/.config/polybar/Scripts/Actualizaciones.sh
-click-left = xfce4-terminal
+exec = ~/.config/polybar/Scripts/xsetE.sh
+click-left = ~/.config/polybar/Scripts/xsetD.sh
+click-right = ~/.config/polybar/Scripts/xsetA.sh
+
+;[module/actualizaciones]
+;type = custom/script
+;interval = 10800
+;format =   <label>
+;format = <label>
+;format =   <label>
+;format-background = ${colors.model-background}
+;format-foreground = ${colors.foreground}
+;exec = bash ~/.config/polybar/Scripts/Actualizaciones.sh
+;click-left = xfce4-terminal
 
 [module/ajustes]
 type = custom/text
@@ -160,7 +147,7 @@ click-right = eww close ajustes
 [module/apagado]
 type = custom/text
 content-foreground = ${colors.foreground}
-content = ""
+content = " "
 ;click-left = ~/.config/polybar/Scripts/EWWmenu.sh
 click-left = eww close power || eww open power
 click-right = eww close power
@@ -182,8 +169,10 @@ format-foreground = ${colors.foreground}
 exec = ~/.config/polybar/Scripts/obtener_brillo.sh
 scroll-up = ~/.config/polybar/Scripts/brillo.sh up
 scroll-down = ~/.config/polybar/Scripts/brillo.sh down
-click-left = ~/.config/polybar/Scripts/RedShift.sh
-click-right = ~/.config/polybar/Scripts/RedShiftM.sh
+click-left = notify-send "Modo Noche" "Filtro activado" && xsct 2800
+click-right = notify-send "Modo Noche" "Filtro desactivado" && xsct 6500
+;click-left = ~/.config/polybar/Scripts/RedShift.sh
+;click-right = ~/.config/polybar/Scripts/RedShiftM.sh
 
 [module/mic-volume]
 type = custom/script
@@ -192,14 +181,12 @@ interval = 1
 format = <label>
 format-background = ${colors.model-background}
 ;format-padding = 2
-exec = bash ~/.config/polybar/Scripts/mic-volume.sh show-vol "alsa_input.pci-0000_00_1f.3.analog-stereo"
-;exec = bash /home/vu/.config/polybar/mic-volume.sh show-vol "alsa_input.pci-0000_00_1f.3.analog-stereo"
-;click-right = pavucontrol
+exec = bash ~/.config/polybar/Scripts/mic-volume-pw.sh show-vol "alsa_input.pci-0000_08_00.6.analog-stereo"
 
 ; Control actions (using pactl)
-click-left = bash ~/.config/polybar/Scripts/mic-volume.sh mute-vol "alsa_input.pci-0000_00_1f.3.analog-stereo"
-scroll-up = bash ~/.config/polybar/Scripts/mic-volume.sh inc-vol "alsa_input.pci-0000_00_1f.3.analog-stereo"
-scroll-down = bash ~/.config/polybar/Scripts/mic-volume.sh dec-vol "alsa_input.pci-0000_00_1f.3.analog-stereo"
+click-left = bash ~/.config/polybar/Scripts/mic-volume-pw.sh mute-vol "alsa_input.pci-0000_08_00.6.analog-stereo"
+scroll-up = bash ~/.config/polybar/Scripts/mic-volume-pw.sh inc-vol "alsa_input.pci-0000_08_00.6.analog-stereo"
+scroll-down = bash ~/.config/polybar/Scripts/mic-volume-pw.sh dec-vol "alsa_input.pci-0000_08_00.6.analog-stereo"
 format-muted-background = ${colors.model-background}
 format-muted-foreground = #666
 ;label-background = ${colors.model-background}
@@ -209,9 +196,19 @@ format-muted-foreground = #666
 [module/rofi]
 type = custom/text
 content-foreground = ${colors.foreground}
-content = " "
+content = "   󱓞"
+;content = "   󱓟"
+;content = "  "
 click-left = rofi -show drun -show-icons 
 ;click-right = brave-browser --app=https://open.spotify.com/intl-es?flow_ctx=211cf624-8d6f-459f-86d1-764a46221e55%3A1726519907
+
+[module/to-do]
+type = custom/text
+content-foreground = ${colors.foreground}
+;content = " "
+content = " "
+click-left = eww close todo || eww open todo
+click-right = eww close todo
 
 [module/buscador]
 type = custom/text
@@ -223,7 +220,8 @@ click-right = brave-browser --app=https://translate.google.com/?hl=es&sl=es&tl=e
 [module/apps]
 type = custom/text
 content-foreground = ${colors.foreground}
-content = " "
+;content = " "
+content = " "
 ;click-left = ~/.config/polybar/Scripts/EWWapps.sh
 click-left = eww close apps || eww open apps
 click-right = eww close apps
@@ -240,7 +238,7 @@ click-right = eww close appsW
 [module/chats]
 type = custom/text
 content-foreground = ${colors.foreground}
-content = "󰭹 "
+content = "󰭹  "
 ;click-left = ~/.config/polybar/Scripts/EWWct.sh
 click-left = eww close chats || eww open chats
 click-right = eww close chats
@@ -315,85 +313,6 @@ label-empty-padding = 2
 ; Separator in between workspaces
 ; label-separator = |
 
-[module/i3]
-type = internal/i3
-format = <label-state> <label-mode>
-index-sort = true
-wrapping-scroll = false
-
-; Only show workspaces on the same output as the bar
-;pin-workspaces = true
-
-label-mode-padding = 2
-label-mode-foreground = #000
-label-mode-background = ${colors.primary}
-
-; focused = Active workspace on focused monitor
-label-focused = %index%
-label-focused-background = ${colors.background-alt}
-label-focused-underline= ${colors.primary}
-label-focused-padding = 2
-
-; unfocused = Inactive workspace on any monitor
-label-unfocused = %index%
-label-unfocused-padding = 2
-
-; visible = Active workspace on unfocused monitor
-label-visible = %index%
-label-visible-background = ${self.label-focused-background}
-label-visible-underline = ${self.label-focused-underline}
-label-visible-padding = ${self.label-focused-padding}
-
-; urgent = Workspace with urgency hint set
-label-urgent = %index%
-label-urgent-background = ${colors.alert}
-label-urgent-padding = 2
-
-; Separator in between workspaces
-; label-separator = |
-
-;[module/mpd]
-;type = internal/mpd
-
-;format = Now playing: {artist} - {title}
-;format-connected = Now playing: {artist} - {title}
-;format-disconnected = MPD not connected
-
-;interval = 5
-
-;[module/mpd]
-;type = internal/mpd
-;format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
-;format-online = <label-song> <icon-prev> <icon-seekb> <icon-stop> <toggle> <icon-seekf> <icon-next>  <icon-repeat> <icon-random> <label-time> 
-;format-online-paused = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
-;format-online-stopped = <icon-prev> <toggle> <icon-next>
-;format-online-stopped = <icon-prev> <icon-seekb> <toggle> <icon-seekf> <icon-next>
-
-;format-playing = ${self.format-online}
-;format-paused = ${self.format-online-paused}
-;format-stopped = ${self.format-online}
-;format-offline = <label-offline>
-
-;host = 127.0.0.1
-;port = 6600
-;password = 123
-
-;icon-prev = 
-;icon-stop = 
-;icon-play = 
-;icon-pause = 
-;icon-next = 
-
-;label-song =  %title%
-;label-song-maxlen = 25
-;label-song-ellipsis = true
-
-;icon-prev = 
-;icon-stop = 
-;icon-play = 
-;icon-pause = 
-;icon-next = 
-
 [module/xbacklight]
 type = internal/xbacklight
 
@@ -434,7 +353,7 @@ label = %percentage_used%%
 
 [module/wifi]
 type = internal/network
-interface = wlp2s0
+interface = wlxc0252ff9aa23
 interval = 10
 format-connected = 
 format-disconnected = 
@@ -488,20 +407,14 @@ label-disconnected-foreground = ${colors.foreground-alt}
 type = internal/date
 interval = 5
 
-;date =
-;date-alt =  %d / %m |
+;date =  %H:%M
+;date-alt =  %d / %m | %H:%M
+time = %H:%M
 
-time = "%H:%M"
-;time =  %H:%M
-;time-alt = %H:%M
-
-;format-prefix = 
-;format-prefix = 
 format-prefix-foreground = ${colors.foreground}
-;format-underline = #62CD22
 
+;label = %date%
 label = %time%
-;label = %date% %time%
 
 [module/pulseaudio]
 type = internal/pulseaudio
@@ -536,30 +449,32 @@ label-muted-foreground = ${root.foreground}
 [module/alsa]
 type = internal/alsa
 
-format-volume = <label-volume> <bar-volume>
-label-volume = VOL
+#format-volume = <label-volume> <bar-volume>
+format-volume = <label-volume>
+label-volume = %percentage%
 label-volume-foreground = ${root.foreground}
 
-format-muted-prefix = " "
+format-muted-prefix =  
 format-muted-foreground = ${colors.foreground-alt}
-label-muted = sound muted
+label-muted = " "
+label-muted-foreground = ${root.foreground}
 
-bar-volume-width = 10
-bar-volume-foreground-0 = #55aa55
-bar-volume-foreground-1 = #55aa55
-bar-volume-foreground-2 = #55aa55
-bar-volume-foreground-3 = #55aa55
-bar-volume-foreground-4 = #55aa55
-bar-volume-foreground-5 = #f5a70a
-bar-volume-foreground-6 = #ff5555
-bar-volume-gradient = false
-bar-volume-indicator = |
-bar-volume-indicator-font = 2
-bar-volume-fill = ─
-bar-volume-fill-font = 2
-bar-volume-empty = ─
-bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.foreground-alt}
+#bar-volume-width = 10
+#bar-volume-foreground-0 = #55aa55
+#bar-volume-foreground-1 = #55aa55
+#bar-volume-foreground-2 = #55aa55
+#bar-volume-foreground-3 = #55aa55
+#bar-volume-foreground-4 = #55aa55
+#bar-volume-foreground-5 = #f5a70a
+#bar-volume-foreground-6 = #ff5555
+#bar-volume-gradient = false
+#bar-volume-indicator = |
+#bar-volume-indicator-font = 2
+#bar-volume-fill = ─
+#bar-volume-fill-font = 2
+#bar-volume-empty = ─
+#bar-volume-empty-font = 2
+#bar-volume-empty-foreground = ${colors.foreground-alt}
 
 [module/battery]
 type = internal/battery
@@ -629,7 +544,7 @@ expand-right = true
 ;format-spacing = 3
 
 ;label-open = 
-label-open = ""
+label-open = " "
 ;label-open-foreground = ${colors.secondary}
 label-open-foreground = ${colors.foreground}
 
@@ -647,7 +562,7 @@ menu-0-1-exec = reboot
 menu-0-2 = "    "
 menu-0-2-exec = bspc quit
 menu-0-3 = "  "
-menu-0-3-exec = ~/.local/bin/blocki3lock.sh
+menu-0-3-exec = ~/.config/Scripts/blocki3lock.sh
 
 ;menu-0-0 = "    "
 ;menu-0-0-exec = ~/.local/bin/blocki3lock.sh

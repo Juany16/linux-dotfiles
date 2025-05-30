@@ -1,10 +1,17 @@
+#    ____      _     _       _ 
+#   / ___|_  _| |__ | | ____| |
+#   \___ \ \/ / '_ \| |/ / _` |
+#    ___) >  <| | | |   < (_| |
+#   |____/_/\_\_| |_|_|\_\__,_|
+#                           
+
 #
 # BSPWM HOTKEYS
 #
 
 # quit/restart bspwm
 super + shift + {q,r}
-	bspc {quit,wm -r}; notify-send "Bspwm" "La configuracion se reinició correctamente!"
+	bspc {quit,wm -r}; sleep 1; notify-send "Bspwm" "La configuracion se reinició correctamente!"
 
 # close and kill
 super + q
@@ -24,7 +31,8 @@ super + Escape
 	#@space
 
 super + c
-    rofi -show calc -no-show-match -no-sort
+    ~/.config/Scripts/rofi-calc.sh
+    #rofi -show calc -no-show-match -no-sort
 
 super + v
     rofi -show windowcd
@@ -32,11 +40,11 @@ super + shift + v
     rofi -show window
 
 super + F4
-  ~/.config/Scripts/powermenu
+  ~/.config/Scripts/powermenu.sh
 	#~/.local/bin/powermenu
 
-super + p
-    ~/.config/Scripts/elegirAudio.sh
+#super + p
+#    ~/.config/Scripts/elegirAudio.sh
 
 super + w
     ~/.config/Scripts/selectorWifi.sh
@@ -75,9 +83,12 @@ super + shift + e
 
 super + b
     brave-browser
+super + shift + b
+    ~/.local/share/zen/zen
+    #flatpak run app.zen_browser.zen 
 
 super + d
-    ~/Documentos/Programación/To-Do-List/Daily-List-MOD/To-Do-List-Final/App/dist/DailyList/DailyList
+    ~/Documentos/Programación/App-DailyList/dist/DailyList/DailyList
 
 #super + alt + c
 #    zenity --calendar

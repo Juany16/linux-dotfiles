@@ -16,6 +16,12 @@
 ;; Clima Var
 (defpoll infoClima :interval "1h" "~/.config/eww/scripts/weather.sh")
 
+;; To-Do Var
+(defpoll todo-list :interval "10s" "~/.config/eww/scripts/tareas.sh")
+
+;; Notis Var
+(defpoll notis :interval "10s" "~/.config/eww/scripts/notis.sh")
+
 ;; WIDGETS
 
 ;; Menu apagado
@@ -27,7 +33,7 @@
     )
     (box :class "cuerpo" :orientation "h" :spacing 10 :halign "center" :valing "center" :space-evenly false
       (button :class "botones" :hexpand "false" :onclick "bspc quit" "󰍃")
-      (button :class "botones" :hexpand "false":onclick "reboot" "")
+      (button :class "botones" :hexpand "false" :onclick "reboot" "")
       (button :class "botones" :vexpand "false" :onclick "poweroff" "")
     )
   )
@@ -37,33 +43,99 @@
 (defwidget ajustes []
   (box :class "padre" :space-evenly false :orientation "v"
     (box :class "encabezado" :space-evenly false
-      (label :text "Ajustes" :class "titulo")
-      (button :class "salir" :onclick "eww open ajustes --toggle" " ")
+        ;;(label :text "Ajustes" :class "titulo")
+        ;;(button :class "salir" :onclick "eww open ajustes --toggle" " ")
+        (button :class "titulo" :onclick "eww open ajustes --toggle" "  Ajustes")
     )
-    (box :class "cuerpo" :orientation "v" :halign "center" :valing "center" :space-evenly false
-      (button :class "botones" :onclick "pavucontrol" "      Audio")
-      (button :class "botones" :onclick "blueman-manager" "󰂰      Bluetooth") 
-      (button :class "botones" :onclick "nm-connection-editor" "     Wifi")
-      (button :class "botones" :onclick "/home/juani/Descargas/Remote-Mouse/RemoteMouse" :onrightclick "pkill RemoteMouse" "󰦋     TrackPad")
-      (button :class "botones" :onclick "kdeconnect-indicator" "     KDE")
-      (button :class "botones" :onclick "pkill kdeconnect-indi" :onrightclick "pkill kdeconnectd" "      KDE")
-      (button :class "botones" :onclick "scrcpy" :onrightclick "pkill scrcpy" "      Scrcpy") 
+    (box :class "hijo" :space-evenly false :orientation "v" 
+      (box :class "cuerpo" :orientation "h" :spacing 10 :halign "center" :valing "center" :space-evenly false
+        (button :class "botones" :hexpand "false" :onclick "pavucontrol" " ")
+        (button :class "botones" :hexpand "false" :onclick "scrcpy" :onrightclick "pkill scrcpy" "  ")
+      )
+      (box :class "cuerpo" :orientation "h" :spacing 10 :halign "center" :valing "center" :space-evenly false
+        (button :class "botones" :hexpand "false" :onclick "kdeconnect-indicator" "  ")
+        (button :class "botones" :hexpand "false" :onclick "pkill kdeconnect-indi" :onrightclick "pkill kdeconnectd" "  ")
+      )
+      (box :class "cuerpo" :orientation "h" :spacing 10 :halign "center" :valing "center" :space-evenly false
+        (button :class "botones" :hexpand "false" :onclick "anydesk" "  ")
+        (button :class "botones" :hexpand "false" :onclick "killall anydesk" "  ")
+      )
+      (box :class "cuerpo" :orientation "h" :spacing 10 :halign "center" :valing "center" :space-evenly false
+        (button :class "botones" :hexpand "false" :onclick "~/.config/eww/scripts/xsetA.sh" " 󰍹 ")
+        (button :class "botones" :hexpand "false" :onclick "~/.config/eww/scripts/xsetD.sh" " 󰶐 ")
+      )
     )
   )
 )
+      ;;(button :class "botones" :onclick "blueman-manager" "󰂰      Bluetooth") 
+      ;;(button :class "botones" :onclick "nm-connection-editor" "     Wifi")
+      ;;(button :class "botones" :onclick "/home/juani/Descargas/Remote-Mouse/RemoteMouse" :onrightclick "pkill RemoteMouse" "󰦋     TrackPad")
 
 ;; Chats
 (defwidget chats []
   (box :class "padre" :space-evenly false :orientation "v"
     (box :class "encabezado" :space-evenly false
-      (label :text "Chats" :class "titulo")
-      (button :class "salir" :onclick "eww open chats --toggle" " ")
+      ;;(label :text "Chats" :class "titulo")
+      ;;(button :class "salir" :onclick "eww open chats --toggle" " ")
+      (button :class "titulo" :onclick "eww open chats --toggle" "󰭹  Chats")
     )
-    (box :class "cuerpo" :orientation "v" :halign "center" :valing "center" :space-evenly false
-      (button :class "botones" :onclick "brave-browser --app=https://web.whatsapp.com/" "      Whatsapp")
-      (button :class "botones" :onclick "brave-browser --app=https://www.instagram.com/" "      Instagram")
-      (button :class "botones" :onclick "discord" "󰙯      Discord")
-      (button :class "botones" :onclick "telegram-desktop" "      Telegram") 
+    (box :class "hijo" :space-evenly false :orientation "v"
+      (box :class "cuerpo" :orientation "h" :spacing 10 :halign "center" :valing "center" :space-evenly false
+        (button :class "botones" :hexpand "false" :onclick "brave-browser --app=https://web.whatsapp.com/" "  ")
+        (button :class "botones" :hexpand "false" :onclick "brave-browser --app=https://www.instagram.com/" "  ")
+      )
+      (box :class "cuerpo" :orientation "h" :spacing 10 :halign "center" :valing "center" :space-evenly false
+        (button :class "botones" :hexpand "false" :onclick "discord" " 󰙯 ")
+        (button :class "botones" :hexpand "false" :onclick "/opt/Telegram/Telegram" "  ") 
+      )
+    ) 
+  )
+)
+
+;; Apps
+(defwidget apps []
+  (box :class "padre" :space-evenly false :orientation "v"
+    (box :class "encabezado" :space-evenly false
+      ;;(label :text "Aplicaciones" :class "titulo")
+      ;;(button :class "salir" :onclick "eww open apps --toggle" " ")
+      (button :class "titulo" :onclick "eww open apps --toggle" "󰀻  Aplicaciones")
+    )
+    (box :class "hijo" :space-evenly false :orientation "v"
+      (box :class "cuerpo" :orientation "h" :spacing 10 :halign "center" :valing "center" :space-evenly false
+        (button :class "botones" :hexpand "false" :onclick "code" " 󰨞 ")
+        (button :class "botones" :hexpand "false" :onclick "sqlitebrowser" " 󰆼 ")
+      )
+      (box :class "cuerpo" :orientation "h" :spacing 10 :halign "center" :valing "center" :space-evenly false
+        (button :class "botones" :hexpand "false" :onclick "flatpak run com.valvesoftware.Steam" "  ")
+        (button :class "botones" :hexpand "false" :onclick "spotify" "  ")
+      )
+    )
+    
+  )
+)
+
+;; Centro de Notificaciones
+(defwidget centro []
+    (box :class "padre" :space-evenly false :orientation "v"
+      (box :class "encabezado" :space-evenly false
+        (button :class "titulo" :onclick "eww open cetro --toggle" "Notificaciones")
+      )
+      (box :class "hijo" :space-evenly false :orientation "v"
+        (label :text notis)
+      )
+    )
+)
+
+;; To-Do List
+(defwidget to-do []
+  (box :class "padre" :space-evenly false :orientation "v"
+    (box :class "encabezado" :space-evenly false
+      ;;(label :text "  Daily List" :class "titulo")
+      ;;(button :class "salir" :onclick "eww open todo --toggle" " ")
+      (button :class "titulo" :onclick "eww open todo --toggle" "  Daily List")
+    )
+    (box :class "to-do" :space-evenly false :orientation "v" 
+      (label :text todo-list)
     )
   )
 )
@@ -73,7 +145,7 @@
   (box :class "padre" :space-evenly false :orientation "v"
     (box :class "encabezado" :space-evenly false
       (label :text "Aplicaciones Web" :class "titulo")
-      (button :class "salir" :onclick "eww open appsW --toggle" " ")
+      ;;(button :class "salir" :onclick "eww open appsW --toggle" " ")
     )
     (box :class "cuerpo" :orientation "v" :halign "center" :valing "center" :space-evenly false
       (button :class "botones" :onclick "brave-browser --app=https://chatgpt.com/" "󰚩      Chat GPT")
@@ -84,25 +156,12 @@
   )
 )
 
-;; Apps
-(defwidget apps []
-  (box :class "padre" :space-evenly false :orientation "v"
-    (box :class "encabezado" :space-evenly false
-      (label :text "Aplicaciones" :class "titulo")
-      (button :class "salir" :onclick "eww open apps --toggle" " ")
-    )
-    (box :class "cuerpo" :orientation "v" :halign "center" :valing "center" :space-evenly false
-      (button :class "botones" :onclick "code" "󰨞     VS Code")
-      (button :class "botones" :onclick "sqlitebrowser" "󰆼     SQLite")
-    )
-  )
-)
-
 ;; Calendario
 (defwidget time []
-    (box :class "date-container" :orientation "h" :space-evenly false :halign "center"
-      (label :text "${completeday}    ")
-      (button :class "salir" :onclick "eww open date --toggle" " ")
+    (box :class "date-container" :orientation "h" :space-evenly false ;;:halign "center"
+      (label :text "${completeday}" :class "titulo")
+      ;;(button :class "salir" :onclick "eww open date --toggle" " ")
+
     )
 )
 
@@ -151,7 +210,8 @@
 
 ;; Reloj
 (defwindow reloj
-  :geometry (geometry :x "0px" :y "200px" :anchor "top center")
+  ;;:geometry (geometry :x "0px" :y "200px" :anchor "top center")
+  :geometry (geometry :x "-10px" :y "40px" :anchor "top right")
   :wm-ignore true
 (time2))
 
@@ -167,6 +227,12 @@
   :wm-ignore true
 (menu))
 
+;; Centro Notificaciones
+(defwindow centro
+  :geometry (geometry :x "-10" :y "40" :anchor "top right")
+  :wm-ignore true
+(centro))
+
 ;; Ajustes
 (defwindow ajustes
   :geometry (geometry :x "-305px" :y "40px" :anchor "top right")
@@ -175,7 +241,7 @@
 
 ;; Chats
 (defwindow chats
-  :geometry (geometry :x "232px" :y "40px" :anchor "top left")
+  :geometry (geometry :x "202px" :y "40px" :anchor "top left")
   :wm-ignore true
 (chats))
 
@@ -190,4 +256,10 @@
   :geometry (geometry :x "180px" :y "40px" :anchor "top left")
   :wm-ignore true
 (apps))
+
+;; To-Do
+(defwindow todo
+  :geometry (geometry :x "10" :y "40px" :anchor "top left")
+  :wm-ignore true
+(to-do))
 

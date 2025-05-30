@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DIR_NOTAS="/home/juani/Documentos/Repertorio Guitarra/"
+DIR_NOTAS="$HOME/Documentos/Repertorio Guitarra/"
 
 if [ -z "$DIR_NOTAS" ]; then
     echo "No hay temas disponibles."

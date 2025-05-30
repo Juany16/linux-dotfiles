@@ -1,20 +1,29 @@
 #! /bin/sh
 
+#    _                                 
+#   | |__  ___ _ ____      ___ __ ___  
+#   | '_ \/ __| '_ \ \ /\ / / '_ ` _ \ 
+#   | |_) \__ \ |_) \ V  V /| | | | | |
+#   |_.__/|___/ .__/ \_/\_/ |_| |_| |_|
+#             |_|                      
+#
+
 # INICIO DE APPS
 pgrep -x sxhkd > /dev/null || sxhkd &
 killall eww
 eww daemon &
 pkill xfce4-notifyd
-#pkill dunst
+pkill dunst
 dunst -conf ~/.config/dunst/dunstrc &
-picom -b -f --corner-radius 5
+pkil picom
+picom --config ~/.config/picom/picom.conf &
 . "${HOME}/.cache/wal/colors.sh" #PYWAL
 $HOME/.config/polybar/launch.sh
 
 # CONFIGURACIONES
 bspc monitor -d I II III IV V VI #VII VIII IX X
 
-bspc config border_width          4
+bspc config border_width          2
 bspc config window_gap            10 #gaps internos (entre ventanas)
 
 # Gaps externos
@@ -42,23 +51,23 @@ bspc config normal_border_color "$color0"
 
 # REGLAS
 bspc rule -a Brave-browser desktop=^1 follow=on
-#bspc rule -a Thunar desktop=^6 follow=on
-#bspc rule -a Code desktop=^7 follow=on
-bspc rule -a Tk desktop=^6 state=floating center=on follow=on
-bspc rule -a discord desktop=^5 follow=on
-bspc rule -a TelegramDesktop desktop=^5 follow=on
-bspc rule -a obs desktop=^4 state=pseudo_tiled follow=on
+bspc rule -a zen desktop=^1 follow=on
+bspc rule -a steam desktop=^3 follow=on
+bspc rule -a obs desktop=^4 follow=on
 bspc rule -a Pavucontrol desktop=^4 state=pseudo_tiled follow=on
 bspc rule -a Nm-connection-editor desktop=^4 state=pseudo_tiled follow=on
 bspc rule -a Blueman-manager desktop=^4 state=pseudo_tiled follow=on
+bspc rule -a discord desktop=^5 follow=on
+bspc rule -a TelegramDesktop desktop=^5 follow=on
+bspc rule -a Spotify desktop=^5 follow=on
+#bspc rule -a Spotify desktop=^5 state=pseudo_tiled center=on follow=on
+bspc rule -a Tk desktop=^6 follow=on
+#bspc rule -a Tk desktop=^6 state=floating center=on follow=on
+
 bspc rule -a Xfce4-terminal state=floating center=on
-bspc rule -a Spotify desktop=^5 state=pseudo_tiled center=on follow=on
 bspc rule -a Zathura state=tiled
-#bspc rule -a scrcpy desktop=^4 follow=on state=floating center=on
-#bspc rule -a kdeconnect-settings desktop=^4 follow=on
+bspc rule -a iriunwebcam state=floating follow=on
 
 # RECARGAS y SCRIPTS
 wal -R #-q -e
-#pkill DailyList
-#~/Documentos/Programación/To-Do-List/Daily-List-MOD/To-Do-List-Final/App/dist/DailyList/DailyList &
 

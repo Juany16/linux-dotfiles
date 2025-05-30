@@ -10,7 +10,7 @@ if [[ -z "$titulo" || -z "$artista" ]]; then
     titulo="YouTube no está abierto"
 fi
 
-opcion=$(echo -e "$artista\n$titulo\n \n \n \n " | rofi -dmenu -i -selected-row 3 -p "󰝚 ")
+opcion=$(echo -e "$artista\n$titulo\n \n \n \n " | rofi -dmenu -i -selected-row 3 -p " ") #󰝚 ")
 
 case "$opcion" in
   " ") playerctl -i spotify previous && notify-send "Anterior" "YouTube" -u low;;

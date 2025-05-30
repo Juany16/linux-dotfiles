@@ -107,11 +107,19 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias clima="python3 ~/.config/Scripts/ClimaWTTR-VCP.py"
-alias dolar="python3 ~/.config/Scripts/WsUSD.py"
+#alias clima="python3 ~/.config/Scripts/ClimaWTTR-VCP.py"
+#alias dolar="python3 ~/.config/Scripts/WsUSD.py"
+alias clima="bash ~/.config/Scripts/venvClimaWTTR-VCP.sh"
+alias dolar="bash ~/.config/Scripts/venvWsUSD.sh"
 alias bloqp="bash ~/.config/Scripts/BloqueoPaginas.sh"
 alias dsloqp="bash ~/.config/Scripts/DesbloqueoPaginas.sh"
 alias py3="python3"
+alias fgt="figlet"
+
+alias blackjack="bash ~/.config/Scripts/BlackJack.sh"
+
+alias actVenv="source .venv/bin/activate"
+alias actProgsVenv="source ~/Documentos/Programación/.venv/bin/activate"
 
 alias upd="sudo apt update"
 alias upg="sudo apt upgrade"
@@ -128,4 +136,4 @@ alias gp="git push"
 
 #(cat ~/.cache/wal/sequences &)
 wal -R -q -e
-#pfetch
+pfetch

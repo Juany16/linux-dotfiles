@@ -1,18 +1,18 @@
 #!/bin/bash
 
-BSPWM="/home/juani/.config/bspwm/bspwmrc"
-POLYBAR="/home/juani/.config/polybar/config"
-DUNST="/home/juani/.config/dunst/dunstrc"
-KITTY="/home/juani/.config/kitty/kitty.conf"
-PICOM="/home/juani/.config/picom/picom.conf"
-ROFI="/home/juani/.config/rofi/config.rasi"
-SXHKD="/home/juani/.config/sxhkd/sxhkdrc"
-ZSH="/home/juani/.zshrc"
+BSPWM="$HOME/.config/bspwm/bspwmrc"
+POLYBAR="$HOME/.config/polybar/config"
+DUNST="$HOME/.config/dunst/dunstrc"
+KITTY="$HOME/.config/kitty/kitty.conf"
+PICOM="$HOME/.config/picom/picom.conf"
+ROFI="$HOME/.config/rofi/config.rasi"
+SXHKD="$HOME/.config/sxhkd/sxhkdrc"
+ZSH="$HOME/.zshrc"
 
-SCRIPTS="/home/juani/.config/Scripts/"
-CONFIGS="/home/juani/.config/"
-EWW="/home/juani/.config/eww/"
-RANGER="/home/juani/.config/ranger/"
+SCRIPTS="$HOME/.config/Scripts/"
+CONFIGS="$HOME/.config/"
+EWW="$HOME/.config/eww/"
+RANGER="$HOME/.config/ranger/"
 
 OPCIONES=$(printf "Bspwm\nPolybar\nDunst\nKitty\nPicom\nRofi\nSxhkd\nZSH\nScripts\nConfigs\nEww\nRanger" | rofi -dmenu -i -p " ")
 

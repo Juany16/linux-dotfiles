@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Directorio donde tienes tus fondos de pantalla
-DIRECTORIO_IMAGENES="/home/juani/Imágenes/Fondos/"
+DIRECTORIO_IMAGENES="$HOME/Imágenes/Fondos-1366-768/"
 
 # Comprobar si rofi está instalado
 if ! command -v rofi &> /dev/null; then
@@ -28,6 +28,7 @@ set_wallpaper() {
     #sleep 1
     #eww reload
     bspc wm -r
+    ~/.config/Scripts/PywalDunst.sh
 }
 
 # Si elige "Fondo aleatorio"

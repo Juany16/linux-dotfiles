@@ -1,28 +1,33 @@
 #!/bin/bash
 
-# Obtener las redes WiFi disponibles
-networks=$(nmcli -fields "SECURITY,SSID,RATE" dev wifi list | sed 1d | sed 's/  */ /g' | sed -E "s/WPA*.?\S/ /g" | sed "s/^--/ /g" | sed "s/  //g" | sed "/--/d")
+# Obtener las redes WiFi disponibles (SSID + señal + seguridad)
+networks=$(nmcli -t -f SSID,SECURITY,SIGNAL dev wifi list | awk -F: '!seen[$1]++ && $1 != "" { 
+  icon = ($2 ~ /WPA|WEP/) ? "" : "";
+  signal = ($3 > 75) ? "" : ($3 > 50) ? "" : "";
+  printf "%s %s (%s)\n", icon, $1, signal;
+}')
 
-# Si no hay redes disponibles, mostrar un mensaje de error
-if [ -z "$networks" ]; then
-    notify-send "Wifi" "No hay redes WiFi disponibles"
-    #exit 1
-fi
+# Agregar opciones para activar/desactivar wifi
+menu="󰖪  Desactivar Wifi\n󱛃  Activar Wifi\n$networks"
 
-# Usar rofi para mostrar las redes y permitir que el usuario seleccione una
-selected_network=$(echo -e "󰖪   Desactivar Wifi\n󱛃   Activar Wifi\n$networks" | rofi -dmenu -i -selected-row 2 -p "")
+# Mostrar en rofi
+selected=$(echo -e "$menu" | rofi -dmenu -i -p "  Redes WiFi")
 
-case "$selected_network" in
-  "Desactivar Wifi") nmcli radio wifi off && notify-send "Wifi Desactivado" "Nmcli" && exit 1;;
-  "Activar Wifi") nmcli radio wifi on && notify-send "Wifi Activado" "Nmcli" && exit 1;;
+# Acciones especiales
+case "$selected" in
+  "󰖪  Desactivar Wifi") nmcli radio wifi off && notify-send "WiFi" "WiFi desactivado" && exit ;;
+  "󱛃  Activar Wifi") nmcli radio wifi on && notify-send "WiFi" "WiFi activado" && exit ;;
 esac
 
-# Si el usuario seleccionó una red, conectar
-if [ -n "$selected_network" ]; then
-    # Pedir la contraseña si es necesario
-    password=$(rofi -dmenu -password -p "Contraseña para $selected_network:")
+# Extraer solo el SSID de la línea seleccionada
+ssid=$(echo "$selected" | sed -E 's/^[^ ]+ (.+) \(.*\)/\1/')
 
-    # Intentar conectar
-    nmcli dev wifi connect "$selected_network" password "$password"
+# Verificar si la red ya está guardada
+if nmcli connection show | grep -q "$ssid"; then
+  nmcli connection up "$ssid" && notify-send "WiFi" "Conectado a $ssid"
+else
+  # Solicitar contraseña si no está guardada
+  password=$(rofi -dmenu -password -p "Contraseña para $ssid:")
+  [ -n "$password" ] && nmcli dev wifi connect "$ssid" password "$password" && notify-send "WiFi" "Conectado a $ssid"
 fi
 

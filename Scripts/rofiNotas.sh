@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DIR_NOTAS="/home/juani/Documentos/Notas Daily List/"
+DIR_NOTAS="$HOME/Documentos/Notas Daily List/"
 
 if [ -z "$DIR_NOTAS" ]; then
     echo "No hay notas disponibles."
