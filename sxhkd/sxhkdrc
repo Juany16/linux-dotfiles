@@ -82,9 +82,11 @@ super + shift + e
     thunar
 
 super + b
-    brave-browser
-super + shift + b
     ~/.local/share/zen/zen
+    #brave-browser
+super + shift + b
+    brave-browser
+    #~/.local/share/zen/zen
     #flatpak run app.zen_browser.zen 
 
 super + d
