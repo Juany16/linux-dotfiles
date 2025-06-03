@@ -46,8 +46,8 @@ super + F4
 #super + p
 #    ~/.config/Scripts/elegirAudio.sh
 
-super + w
-    ~/.config/Scripts/selectorWifi.sh
+#super + w
+#    ~/.config/Scripts/selectorWifi.sh
 
 super + shift + f
     ~/.config/Scripts/selectorFondos.sh
@@ -55,7 +55,8 @@ super + shift + f
 super + n
     ~/.config/Scripts/rofiNotas.sh
 super + r
-    ~/.config/Scripts/rofiRepertorioGuitarra.sh
+    ~/.config/Scripts/selectorRedes.sh
+    #~/.config/Scripts/rofiRepertorioGuitarra.sh
 
 super + ctrl + c
     ~/.config/Scripts/rofiModConfig.sh

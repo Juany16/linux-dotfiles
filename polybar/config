@@ -64,7 +64,7 @@ font-3 = HackNerdFont:size=11;2
 ; MODULOS DE LA BARRA
 modules-left = rofi bspwm to-do apps chats
 modules-center = xwindow
-modules-right = xset ajustes pulseaudio mic-volume brillo wifi notificaciones calendario date apagado
+modules-right = xset ajustes pulseaudio mic-volume brillo redes notificaciones calendario date apagado
 
 ; MODULO DE APPS EN 2DO PLANO
 tray-position = center
@@ -122,6 +122,14 @@ format-foreground = ${colors.foreground}
 exec = ~/.config/polybar/Scripts/xsetE.sh
 click-left = ~/.config/polybar/Scripts/xsetD.sh
 click-right = ~/.config/polybar/Scripts/xsetA.sh
+
+[module/redes]
+type = custom/script
+interval = 1
+format = <label>
+format-background = ${colors.background}
+format-foreground = ${colors.foreground}
+exec = ~/.config/polybar/Scripts/redes.sh
 
 ;[module/actualizaciones]
 ;type = custom/script
@@ -358,11 +366,13 @@ interface = wlxc0252ff9aa23
 interval = 10
 format-connected = 
 format-disconnected = 
-;format-disconnected-foreground = #666
-;click-left = Nm-connection-editor
-;exec bash ~/.config/Scripts/Wifi.sh
-;format-connected =  <label-connected>
-;format-disconnected =   Desconectado
+
+[module/eth]
+type = internal/network
+interface = enx025605063761
+interval = 10
+format-connected= 
+format-disconnected = 
 
 [module/wlan]
 type = internal/network
@@ -375,10 +385,6 @@ format-connected = <ramp-signal> <label-connected>
 ;label-connected = %essid%
 
 format-disconnected = 
-;format-disconnected = <label-disconnected>
-;format-disconnected-underline = ${self.format-connected-underline}
-;label-disconnected = %ifname% disconnected
-;label-disconnected-foreground = ${colors.foreground-alt}
 
 ramp-signal-0 = 
 ramp-signal-1 = 
@@ -386,23 +392,6 @@ ramp-signal-2 = 
 ramp-signal-3 = 
 ramp-signal-4 = 
 ramp-signal-foreground = ${colors.foreground-alt}
-
-[module/eth]
-type = internal/network
-interface = enp0s31f6
-interval = 3.0
-
-;format-connected-underline = #55aa55
-;format-connected-prefix = " "
-format-connected-prefix = "  "
-format-connected-prefix-foreground = ${colors.foreground-alt}
-label-connected = %local_ip%
-
-;format-disconnected =
-format-disconnected = <label-disconnected>
-format-disconnected-underline = ${self.format-connected-underline}
-label-disconnected = %ifname% disconnected
-label-disconnected-foreground = ${colors.foreground-alt}
 
 [module/date]
 type = internal/date
