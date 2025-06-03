@@ -150,6 +150,10 @@ super + {a,s}
 super + shift + {a,s}
     bspc node -d {prev,next}
 
+# enfocar siguiente ventana en la misma area de trabajo
+super + ctrl + {a,s}
+    bspc node -f {prev,next}.local
+
 # focus the last node/desktop
 super + Tab
 	bspc desktop -f last
@@ -188,6 +192,12 @@ super + ctrl + {Left,Down,Up,Right}
 # alternate between the tiled and monocle layout
 super + shift + m
 	bspc desktop -l next
+
+# rotar el entorno
+super + ctrl + r
+  bspc node @/ -R 90
+super + alt + r
+  bspc node @/ -R -90
 
 # send the newest marked node to the newest preselected node
 #super + y
