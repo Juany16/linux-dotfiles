@@ -6,54 +6,43 @@
 #                           
 
 #
-# BSPWM HOTKEYS
+# ATAJOS DE BSPWM
 #
 
-# quit/restart bspwm
-super + shift + {q,r}
-	bspc {quit,wm -r}; sleep 1; notify-send "Bspwm" "La configuracion se reinició correctamente!"
+# cerrar sesion o reiniciar bspwm
+super + shift + r
+    bspc wm -r; sleep 1; notify-send "Bspwm" "La configuracion se reinició correctamente!"
 
-# close and kill
-super + q
-	bspc node -{c}
-                #k
-# make sxhkd reload its configuration files:
+# cerrar o matar
+super + {_,shift + }q
+    bspc node -{c,k}
+
+# recargar sxhkd
 super + shift + Escape
-	pkill -USR1 -x sxhkd; notify-send "Sxhkd" "La configuracion se reinició correctamente!"
+    pkill -USR1 -x sxhkd; notify-send "Sxhkd" "La configuracion se reinició correctamente!"
 
 #
-# MW INDEPENDENT HOTKEYS
+# ATAJOS INDEPENDIENTES
 #
 
-# program launcher
+# Scripts de Rofi
+
 super + Escape
-	rofi -show drun -show-icons
-	#@space
+    rofi -show drun -show-icons
+
+super  + {_,shift + }v
+    rofi -show {windowcd,window}
 
 super + c
     ~/.config/Scripts/rofi-calc.sh
     #rofi -show calc -no-show-match -no-sort
 
-super + v
-    rofi -show windowcd
-super + shift + v
-    rofi -show window
-
 super + F4
-  ~/.config/Scripts/powermenu.sh
-	#~/.local/bin/powermenu
-
-#super + p
-#    ~/.config/Scripts/elegirAudio.sh
-
-#super + w
-#    ~/.config/Scripts/selectorWifi.sh
+    ~/.config/Scripts/powermenu.sh
 
 super + shift + f
     ~/.config/Scripts/selectorFondos.sh
 
-super + n
-    ~/.config/Scripts/rofiNotas.sh
 super + r
     ~/.config/Scripts/selectorRedes.sh
     #~/.config/Scripts/rofiRepertorioGuitarra.sh
@@ -64,165 +53,162 @@ super + ctrl + c
 super + alt + p
     ~/.config/Scripts/ocultarPolybar.sh
 
-Pause
-    ~/.config/Scripts/rofiMusica.sh
-super + Pause
-    ~/.config/Scripts/rofiYT.sh
+{_,super + }Pause
+    {~/.config/Scripts/rofiMusica.sh,~/.config/Scripts/rofiYT.sh}
 
-super + shift + t
-    ~/.config/Scripts/rofiKeyBinding.sh
+ctrl + shift + alt + n
+    ~/.config/Scripts/rofiNotas.sh
 
-super + Return
-    kitty
-super + shift + Return
-    xfce4-terminal
+#super + shift + t
+    #~/.config/Scripts/rofiKeyBinding.sh
+#super + p
+#    ~/.config/Scripts/elegirAudio.sh
+#super + w
+#    ~/.config/Scripts/selectorWifi.sh
 
-super + e
-    kitty -e ranger
-super + shift + e
-    thunar
+# Aplicaciones
 
-super + b
-    ~/.local/share/zen/zen
-    #brave-browser
-super + shift + b
-    brave-browser
-    #~/.local/share/zen/zen
-    #flatpak run app.zen_browser.zen 
+super + {_,shift + }Return
+    {kitty,xfce4-terminal}
+    #xfce4-terminal
+    #bspc rule -a kitty -o state=floating center=on rectangle=70x50+100+100 && kitty
+
+super + {_,shift + }e
+    {kitty -e ranger,thunar}
+
+ctrl + alt + t : {b,c,m,p,r}
+    kitty -e {btop,cava,cmatrix,pipes,tty-clock -c -s}
+
+super + {_,shift + }b
+    {~/.local/share/zen/zen,brave-browser}
 
 super + d
     ~/Documentos/Programación/App-DailyList/dist/DailyList/DailyList
 
-#super + alt + c
-#    zenity --calendar
-
-# Take a screenshot
-Print
-    xfce4-screenshooter
-super + Print
-    xfce4-screenshooter -r
-
-#super + alt + f
-    #~/.config/Scripts/ocultarPolybar.sh
-    #~/.config/Scripts/cambiar_fondo.sh; notify-send "Fondo y Tema" "Actualizados aleatoriamente"
+{_,super + }Print
+    {xfce4-screenshooter,xfce4-screenshooter -r}
 
 # i3lock
 Scroll_Lock
     ~/.config/Scripts/blocki3lock.sh
 
-super + shift + c
+ctrl + shift + alt + c
     ~/.config/Scripts/selectorColores.sh
 
 #
-# STATE / FLAGS
+# ESTADOS Y COMPORTAMIENTOS | STATE / FLAGS
 #
 
-# set the window state
+# cambiar el estado de una ventana | state
 super + {t,ctrl + t,f,m}
-	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+    bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 
-# set the node flags
+# cambiar el comportamiento de una ventana | flag
 super + ctrl + p
-	bspc node -g sticky
-#super + ctrl + e
-#    bspc node -g hidden=on
-#super + alt + e
-#    bspc node -g hidden=off
+    bspc node -g sticky
 
-#super + ctrl + {m,x,y,z}
-#	bspc node -g {marked,locked,sticky,private}
+super + ctrl + Return
+    bspc node -g sticky; bspc node -g hidden
+super + alt + Return
+    for vnt in $(bspc query -N -n .hidden.window); do bspc node $vnt -g hidden=off; bspc node $vnt -g sticky=off -f; done;
+    #~/.config/Scripts/OcultarVnt.sh
 
 #
-# FOCUS / SWAP
+# ENFOCAR Y CAMBIAR | FOCUS / SWAP
 #
 
-# focus the node in the given direction
+# enfocar la ventana en la direccion dada
 super + {_,shift + }{Left,Down,Up,Right}
-	bspc node -{f,s} {west,south,north,east}
+    bspc node -{f,s} {west,south,north,east}
 
-# focus the node for the given path jump
-super + shift + {p,h,comma,period}
-	bspc node -f @{parent,brother,first,second}
+# enfocar la ventana segun la creacion
+ctrl + alt + {p,h,comma,period}
+    bspc node -f @{parent,brother,first,second}
 
-# focus the next/previous desktop in the current monitor
-super + {a,s}
-	bspc desktop -f {prev,next}.local
+# cambiar la ventana a la siguiente o anterior area de trabajo
 super + shift + {a,s}
-    bspc node -d {prev,next}
+    bspc node -d {prev,next}.local --follow
 
 # enfocar siguiente ventana en la misma area de trabajo
 super + ctrl + {a,s}
-    bspc node -f {prev,next}.local
+    bspc node -f {prev,next}.local.\!focused.window.tiled
+super + ctrl + f
+    bspc node -f next.local.\!focused.window.floating
 
-# focus the last node/desktop
+# enfocar la siguiente o anterior area de trabajo del monitor actual
+super + {a,s}
+    bspc desktop -f {prev,next}.local
+
+# enfocar la ultima area de trabajo
 super + Tab
-	bspc desktop -f last
-#{grave,} {node,}
+    bspc desktop -f last
 
-# focus or send to the given desktop
+# intercambiar ventanas de area de trabajo
+ctrl + shift + {a,s}
+    bspc desktop -b {prev,next}
+
+# enfocar o mandar una ventana a otra area de trabajo
 super + {_,shift + }{1-9,0}
-	bspc {desktop -f,node -d} '^{1-9,10}'
-
-# focus the older or newer node in the focus history
-#super + {v,n}
-#	bspc wm -h off; \
-#	bspc node {older,newer} -f; \
-#	bspc wm -h on
+    bspc {desktop -f,node -d} '^{1-9,10}' --follow
 
 #
-# MOVE / RESIZE
+# MOVER Y REDIMENCIONAR | MOVE / RESIZE
 #
 
-# expand a window by moving one of its side outward
+# agrandar una ventana
 super + alt + {Left,Down,Up,Right}
-	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+    bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
 
-# contract a window by moving one of its side inward
+# achicar una ventana
 super + ctrl + {Left,Down,Up,Right}
-	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+    bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
 
-# move a floating window
-#super + {Left,Down,Up,Right}
-#	bspc node -v {-20 0,0 20,0 -20,20 0}
+# hacer que las ventanas tengan el mismo tamaño
+ctrl + shift + alt + 0
+    bspc node @/ {-B,-E}
+
+# cambiar tamaño de los gaps
+#super + g : {Right,Left}
+#    bspc config -d focused window_gap "$(($(bspc config  -d focused window_gap) {+,-} 5 ))"
 
 #
 # ALTERNAR EL LAYOUT
 #
 
-# alternate between the tiled and monocle layout
-super + shift + m
-	bspc desktop -l next
+# alternar entre tiled y monocle layout
+ctrl + shift + alt + m
+    bspc desktop -l next
 
 # rotar el entorno
-super + ctrl + r
-  bspc node @/ -R 90
-super + alt + r
-  bspc node @/ -R -90
-
-# send the newest marked node to the newest preselected node
-#super + y
-	#bspc node newest.marked.local -n newest.!automatic.local
-
-# swap the current node and the biggest window
-#super + g
-#	bspc node -s biggest.window
+ctrl + shift + alt + {Right,Left}
+    bspc node @/ -R {90,-90}
 
 #
-# PRESELECT
+# PRESELECCIONAR ESPACIOS | PRESELECT
 #
 
-# preselect the direction
-#super + ctrl + {h,j,k,l}
-#	bspc node -p {west,south,north,east}
+# preseleccionar la direccion y cambiar tamaño
+alt + shift + {Left,Down,Up,Right}
+    bspc node -p {west,south,north,east}
+alt + shift + {1-9}
+    bspc node -o 0.{1-9}
 
-# preselect the ratio
-#super + ctrl + {1-9}
-#	bspc node -o 0.{1-9}
+# cancelar la preseleccion
+ctrl + space
+    bspc node -p cancel
 
-# cancel the preselection for the focused node
-#super + ctrl + space
-#	bspc node -p cancel
+#
+# RECEPTACULOS
+#
 
-# cancel the preselection for the focused desktop
-#super + ctrl + shift + space
-	#bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+# crear un receptaculo en la direccion dada
+#ctrl + shift + space; {Left,Down,Up,Right}
+#    bspc node -p {west,south,north,east} -i
+
+# cerrar todos los receptaculos
+#ctrl + alt + space
+#    for win in $(bspc query -N -n .leaf.\!window); do bspc node $win -k ; done;
+
+# mover una ventana a un receptaculo
+#ctrl + shift + m
+#    bspc node $(bspc query -N -n focused) -n $(bspc query -N -n .leaf.\!window -d focused)
