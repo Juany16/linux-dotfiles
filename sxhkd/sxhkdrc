@@ -122,8 +122,8 @@ super + {_,shift + }{Left,Down,Up,Right}
     bspc node -{f,s} {west,south,north,east}
 
 # enfocar la ventana segun la creacion
-ctrl + alt + {p,h,comma,period}
-    bspc node -f @{parent,brother,first,second}
+#ctrl + alt + {p,h,comma,period}
+    #bspc node -f @{parent,brother,first,second}
 
 # cambiar la ventana a la siguiente o anterior area de trabajo
 super + shift + {a,s}
@@ -194,7 +194,7 @@ alt + shift + {1-9}
     bspc node -o 0.{1-9}
 
 # cancelar la preseleccion
-ctrl + space
+alt + space
     bspc node -p cancel
 
 #
