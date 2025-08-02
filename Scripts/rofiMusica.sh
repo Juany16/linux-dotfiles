@@ -10,12 +10,14 @@ if [[ -z "$titulo" || -z "$artista" ]]; then
     titulo="Spotify no está abierto"
 fi
 
-opcion=$(echo -e "$artista\n$titulo\n \n \n \n " | rofi -dmenu -i -selected-row 3 -p " ") #󰝚 ")
+#opcion=$(echo -e "$artista\n$titulo\n \n \n \n " | rofi -dmenu -i -selected-row 3 -p " ") #󰝚 ")
+opcion=$(echo -e "$artista\n$titulo\n \n  \n " | rofi -dmenu -i -selected-row 3 -p " ") #󰝚 ")
 
 case "$opcion" in
   " ") playerctl -p spotify previous && notify-send "Anterior" "Spotify" -u low;;
-  " ") playerctl -p spotify play && notify-send "Spotify reproduciendo" "<b>$artista</b>\n$titulo" -u low;;
-  " ") playerctl -p spotify pause && notify-send "Spotify pausado" "<b>$artista</b>\n$titulo" -u low;;
+  #" ") playerctl -p spotify play && notify-send "Spotify reproduciendo" "<b>$artista</b>\n$titulo" -u low;;
+  "  ") playerctl -p spotify play-pause && notify-send "$artista" "$titulo" -u low;;
+  #" ") playerctl -p spotify pause && notify-send "Spotify pausado" "<b>$artista</b>\n$titulo" -u low;;
   " ") playerctl -p spotify next && notify-send "Siguiente" "Spotify" -u low;;
   *) exit 1;;
 esac
