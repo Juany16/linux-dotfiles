@@ -57,8 +57,6 @@ bspc rule -a Brave-browser desktop=^1 follow=on
 bspc rule -a zen desktop=^1 follow=on
 bspc rule -a steam desktop=^2 follow=on
 bspc rule -a obs desktop=^3 follow=on
-bspc rule -a Pavucontrol state=floating
-bspc rule -a Nm-connection-editor state=floating
 bspc rule -a Blueman-manager state=floating
 bspc rule -a discord desktop=^4 follow=on
 bspc rule -a TelegramDesktop desktop=^4 follow=on
@@ -68,9 +66,12 @@ bspc rule -a Chromium-browser state=floating
 bspc rule -a Tk desktop=^6 follow=on
 #bspc rule -a Tk desktop=^6 state=floating center=on follow=on
 
+bspc rule -a Pavucontrol state=floating
+bspc rule -a Nm-connection-editor state=floating
 bspc rule -a Xfce4-terminal state=floating center=on
 bspc rule -a Zathura state=tiled
 bspc rule -a iriunwebcam state=floating follow=on
+bspc rule -a feh state=floating center=on
 
 # RECARGAS y SCRIPTS
 wal -R #-q -e
