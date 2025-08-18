@@ -83,7 +83,7 @@ super + {_,shift + }b
     {~/.local/share/zen/zen,brave-browser}
 
 super + d
-    ~/Documentos/Programación/App-DailyList/dist/DailyList/DailyList
+    ~/Documentos/Aplicaciones/DailyList/dist/DailyList/DailyList
 
 {_,super + }Print
     {xfce4-screenshooter,xfce4-screenshooter -r}
