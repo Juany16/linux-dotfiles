@@ -7,7 +7,7 @@ xsct 2800
 dunstctl set-paused true
 playerctl -a pause
 nmcli radio wifi off
-nmcli connection down "$USB"
+nmcli connection up "$USB"
 pkill zen
 pkill spotify
 pkill Discord
