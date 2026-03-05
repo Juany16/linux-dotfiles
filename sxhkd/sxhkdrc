@@ -43,17 +43,18 @@ super + F4
 super + shift + f
     ~/.config/Scripts/selectorFondos.sh
 
-super + r
-    ~/.config/Scripts/selectorRedes.sh
+# super + r
+    # ~/.config/Scripts/selectorRedes.sh
     #~/.config/Scripts/rofiRepertorioGuitarra.sh
 
 super + ctrl + c
     ~/.config/Scripts/rofiModConfig.sh
 
-# super + alt + p
-#     ~/.config/Scripts/ocultarPolybar.sh
-super + alt + m
-    ~/.config/Scripts/ModosRofi.sh
+super + alt + p
+    ~/.config/Scripts/ocultarPolybar.sh
+
+# super + alt + m
+#     ~/.config/Scripts/ModosRofi.sh
 
 {_,super + }Pause
     {~/.config/Scripts/rofiMusica.sh,~/.config/Scripts/rofiYT.sh}

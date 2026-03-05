@@ -1,14 +1,18 @@
 USB="Conexión cableada 2"
 
-# notify-send "Modo Foco" "Activado"
-# sleep 3
+paused=$(dunstctl is-paused)
+if  "$paused" == "true" ; then
+  dunstctl set-paused false
+else
+  dunstctl set-paused true
+fi
 
-pkill polybar
-bspc config top_padding 0
-dunstctl set-paused true
+bash ~/.config/Scripts/ocultarPolybar.sh
+# polybar-msg cmg hide
+# bspc config top_paddig 0
 playerctl -a pause
-nmcli radio wifi off
-nmcli connection up "$USB"
+# nmcli radio wifi off
+# nmcli connection up "$USB"
 pkill Discord
 pkill Telegram
 # bash ~/.config/Scripts/BloqueoPaginas.sh

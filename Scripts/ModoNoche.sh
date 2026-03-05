@@ -1,15 +1,15 @@
 USB="Conexión cableada 2"
 
-# notify-send "Modo Noche" "Activado"
-# sleep 3
-
 xsct 2800
-dunstctl set-paused true
+polybar-msg cmg show
+bspc config top_paddig 30
 playerctl -a pause
-nmcli radio wifi off
-nmcli connection up "$USB"
+dunstctl set-paused true
+# nmcli radio wifi off
+# nmcli connection up "$USB"
 pkill zen
 pkill spotify
 pkill Discord
 pkill Telegram
 # bash ~/.config/Scripts/BloqueoPaginas.sh
+

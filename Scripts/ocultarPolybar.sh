@@ -1,8 +1,11 @@
-#! /usr/bin/bash
+#!/bin/bash
 
-opcion=$(echo -e "Ocultar barra\nMostrar barra" | rofi -dmenu -i -p " ")
-
-case "$opcion" in
-  "Ocultar barra") pkill polybar && bspc config top_padding 0 && dunstctl set-paused true;;
-  "Mostrar barra") bspc wm -r && dunstctl set-paused false;;
-esac
+if [ -f /tmp/polybarhidden ]; then 
+  polybar-msg cmd show 
+  bspc config top_padding 30 
+  rm /tmp/polybarhidden 
+else 
+  polybar-msg cmd hide 
+  bspc config top_padding 0 
+  touch /tmp/polybarhidden 
+fi
