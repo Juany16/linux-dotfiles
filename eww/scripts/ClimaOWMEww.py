@@ -3,7 +3,7 @@ import requests as rqs
 
 # http://api.openweathermap.org/data/2.5/weather?q={}&appid=5f3b29f4dc85907c2d876b350b1a616b&units=metric&lang=es
 
-API = "8b7fff65c29d705c40c6c729eaddc35c"
+API = "API_KEY"
 CIUDAD = "Villa Carlos Paz"
 UNIDADES = "metric"
 IDIOMA = "es"
