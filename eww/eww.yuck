@@ -14,7 +14,8 @@
 (defpoll calendar_year :interval "10h" "date '+%Y'")
 
 ;; Clima Var
-(defpoll infoClima :interval "1h" "~/.config/eww/scripts/weather.sh")
+(defpoll infoClima :interval "1h" "~/.config/eww/scripts/climaActual.sh")
+(defpoll infoClimaDs :interval "1h" "~/.config/eww/scripts/climaDias.sh")
 
 ;; To-Do Var
 (defpoll todo-list :interval "10s" "~/.config/eww/scripts/tareas.sh")
@@ -22,108 +23,259 @@
 ;; Notis Var
 (defpoll notis :interval "10s" "~/.config/eww/scripts/notis.sh")
 
+;; Music polls
+(deflisten media_info 
+    :initial '{"player": "", "status": "Stopped", "title": "No Media", "artist": "", "cover": ""}'
+    "~/.config/eww/scripts/musicaSpotify.sh")
+
+;; Poll untuk Notifikasi (Dunst) - UPDATED
+(defpoll notification_count :interval "2s"
+  :initial "0"
+  `dunstctl count history || echo 0`)
+
+(defpoll notification_history :interval "500ms"
+  :initial "[]"
+  `~/.config/eww/scripts/notificaciones.sh`)
+
 ;; WIDGETS
+
+;; Separador
+(defwidget separador []
+  (box :class "separador" :hexpand true :width "350px"))
+
+;; Items de Notificaciones
+(defwidget notification_item [appname summary id icon_path]
+  (box :class "notification-item"
+       :orientation "h"
+       :spacing 5
+       :space-evenly false
+    
+    ;; Ikon Notifikasi
+    (box :class "notification-icon-container"
+         :visible {icon_path != "" && icon_path != "null"}
+      (label :text " " :style "font-size: 24px;"))
+    
+    ;; Teks Notifikasi
+    (box :class "notification-text-container"
+         :orientation "v"
+         :halign "start"
+         :valign "center"
+         :hexpand true
+         :space-evenly false
+      (label :class "notification-appname"
+             :text appname
+             :xalign 0
+             :limit-width 35)
+      (label :class "notification-summary"
+             :text summary
+             :xalign 0
+             :wrap true
+             :limit-width 35))
+    
+    ;; Button close yang berfungsi
+    ;;(button :class "notification-close-btn"
+            ;;:onclick "dunstctl history-rm ${id} && eww update notification_history=$(~/.config/eww/scripts/notificaciones.sh)"
+      ;;(label :text "✕"))
+  )
+)
+
+;; Centro de Notificaciones
+(defwidget notification_center []
+  (box :class "notification-center-container"
+       :orientation "v"
+       :space-evenly false
+       :spacing 2
+
+    ;; Header Notifikasi - FIXED
+    (box :class "notification-header"
+         :orientation "h"
+         :space-evenly false
+         :hexpand true
+      (label :class "notification-header-title"
+             :text "Notificaciones "
+             :halign "start"
+             :hexpand true)
+      (button :class "botonesNA" :halign "fill" :hexpand "false" :onclick "dunstctl set-paused false" " ")
+      (button :class "botonesND" :halign "fill" :hexpand "false" :onclick "dunstctl set-paused true" " ")
+      (button :class "botonBN" :onclick "dunstctl history-clear && eww update notification_history='[]'" :xalign 1 "󰆴")
+    )
+    
+    ;; Daftar Notifikasi (dengan scroll)
+    (scroll :class "notification-list-scroll"
+            ;;:height 597
+            :height 368
+            :spacing 5
+            :vscroll true
+            :hscroll false
+      (box :class "notification-list"
+           :orientation "v"
+           :spacing 8
+           :valign {notification_count == 0 ? "center" : "start"}
+           :vexpand true
+           ;; Loop melalui hasil script
+           (for notification in notification_history
+             (notification_item
+                 :appname {notification.appname}
+                 :summary {notification.summary}
+                 :id {notification.id}
+                 :icon_path {notification.icon}
+             )
+           )
+           ;; Footer di DALAM scroll - tampil saat tidak ada notifikasi
+           (box :class "notification-footer"
+                :halign "center"
+                :valign "center"
+                :vexpand true
+                :visible {notification_count == 0}
+             (label :text "Sin notificaciones nuevas"))
+      )
+    )
+))
+
+;; Reproductor
+(defwidget media_widget []
+  (box :class "media-widget-container"
+       :orientation "v"
+       :space-evenly false
+       :spacing 10
+    (box  :class "cuerpo" :orientation "h" :space-evenly false :spacing 10
+          (time)
+;;          (button :class "botonApagar" :xalign 0.5 :onclick "poweroff" "")
+;;          (button :class "botonReiniciar" :xalign 0.5 :onclick "reboot" "")
+;;          (button :class "botonSesion" :xalign 0.5 :onclick "bspc quit" "󰍃")
+          (button :class "botonBloquear" :xalign 0.5 :onclick "~/.config/Scripts/blocki3lock.sh" "")
+          (button :class "botonCerrar" :xalign 0.5 :onclick "eww open ajustes --toggle" "")
+    )
+    (separador)
+    (box  :class "cuerpo" :orientation "h" :space-evenly false :spacing 10
+          ;;(clima)
+          (button :class "botonDia" :xalign 0.5 
+                  :onclick "notify-send 'Modo Noche' 'Filtro activado' && xsct 2800 & eww close ajustes"
+                  :onrightclick  "notify-send 'Modo Noche' 'Filtro desactivado' && xsct 6500 & eww close ajustes" "")
+;;          (button :class "botonNoche" :xalign 0.5 
+;;                  :onclick "notify-send 'Modo Noche' 'Filtro activado' && xsct 2800 & eww close ajustes" "󰃛")
+;;          (button :class "botonAndroid" :xalign 0.5 :onclick "scrcpy" "")
+;;          (button :class "botonMatar" :xalign 0.5 :onclick "pkill scrcpy" "")
+;;          (button :class "botonKde" :xalign 0.5 :onclick "kdeconnect-indicator" "")
+;;          (button :class "botonMatar" :xalign 0.5 :onclick "pkill kdeconnect-indi" :onrightclick "pkill kdeconnectd" "")
+;;          (button :class "botones" :xalign 0.5 
+;;                  :onclick "~/.config/eww/scripts/xsetA.sh & eww close ajustes" "󰍹")
+          (button :class "botones" :xalign 0.5 
+                  :onclick "~/.config/eww/scripts/xsetD.sh & eww close ajustes"
+                  :onrightclick  "~/.config/eww/scripts/xsetA.sh & eww close ajustes" "󰶐")
+          (button :class "botonVol" :xalign 0.5 :onclick "pavucontrol & eww close ajustes" "")
+          (button :class "botonTerminal" :hexpand "false" 
+                  :onclick "bspc rule -a kitty -o state=floating center=on rectangle=850x550+100+100 && kitty ~/ & 
+                  eww close ajustes" "")
+          (button :class "botones" :hexpand "false" 
+                  :onclick "bspc rule -a kitty -o state=floating center=on rectangle=850x550+100+100 && kitty -e ranger ~/ & 
+                  eww close ajustes" "")
+          (button :class "botonTerminal" :hexpand "false" 
+                  :onclick "bspc rule -a kitty -o state=floating center=on rectangle=850x550+100+100 && kitty -e nvim & 
+                  eww close ajustes" "")
+          (button :class "botonBlocPags" :hexpand "false" 
+                  :onclick "bspc rule -a kitty -o state=floating center=on rectangle=850x550+100+100 && 
+                  kitty -e ~/.config/Scripts/BloqueoPaginas.sh & eww close ajustes" 
+                  :onrightclick "bspc rule -a kitty -o state=floating center=on rectangle=850x550+100+100 && 
+                  kitty -e ~/.config/Scripts/DesbloqueoPaginas.sh & eww close ajustes" "󰂭")
+    )
+
+    ;; Cover Art
+    ;;(box :class "media-cover-widget"
+         ;;:style {media_info.cover != "" ? "background-image: url('${media_info.cover}'); 
+         ;;background-size: contain; background-repeat: no-repeat; background-position: center;" : "background-image: none;"}
+         ;;:visible {media_info.cover != ""})
+    
+    ;; Media Info
+    (box :class "media-widget-info"
+         :orientation "v"  
+         :space-evenly false
+         :spacing 10
+      
+      ;; Label section
+      (box :orientation "v"
+           :space-evenly false
+           :hexpand true
+           :halign "center"
+        (label :class "media-widget-name"
+               :text {media_info.player}
+               :visible {media_info.player != ""}
+               :xalign 0.5)
+        (label :class "media-widget-title"
+               :text {media_info.title}
+               :limit-width 35
+               :xalign 0.5)
+        (label :class "media-widget-artist"
+               :text {media_info.artist}
+               :limit-width 35
+               :xalign 0.5))
+      
+      ;; Controls
+    (box :class "media-widget-controls" :halign "fill" :spacing 5
+        (button :class "media-widget-btn"
+                :onclick "playerctl -p ${media_info.player} previous"
+          (box :width 30 :height 30 :halign "center" :valign "center"
+            (label :text "󰒮" :style "font-size: 28px;")))
+        
+        (button :class "media-widget-btn-play"
+                :onclick "playerctl -p ${media_info.player} play-pause"
+          (box :width 30 :height 30 :halign "center" :valign "center"
+            (label :text {media_info.status == "Playing" ? "󰏤" : "󰐊"}                       :style "font-size: 32px;")))
+        
+        (button :class "media-widget-btn"
+                :onclick "playerctl -p ${media_info.player} next"
+          (box :width 30 :height 30 :halign "center" :valign "center"
+            (label :text "󰒭" :style "font-size: 28px;"))))
+
+    )
+    (notification_center)
+    ))
 
 ;; Menu apagado
 (defwidget menu []
-  (box :class "padre" :space-evenly false :orientation "v"
-    (box :class "cuerpo" :orientation "h" :spacing 10 :halign "center" :valing "center" :space-evenly false
-      (button :class "botones" :hexpand "false" :onclick "~/.config/Scripts/blocki3lock.sh" "")
-      (button :class "botones" :onclick "eww open power --toggle" "")
-    )
-    (box :class "cuerpo" :orientation "h" :spacing 10 :halign "center" :valing "center" :space-evenly false
-      (button :class "botones" :hexpand "false" :onclick "bspc quit" "󰍃")
-      (button :class "botones" :hexpand "false" :onclick "reboot" "")
-      (button :class "botones" :vexpand "false" :onclick "poweroff" "")
+  (box :class "padre" :space-evenly true :orientation "v"
+    (box :class "cuerpo" :orientation "h" :spacing 10 :halign "center" :valing "center" :space-evenly true
+      (button :class "botonApagar" :xalign 0.5 :onclick "poweroff" "")
+      (button :class "botonReiniciar" :xalign 0.5 :onclick "reboot" "")
+      (button :class "botonSesion" :xalign 0.5 :onclick "bspc quit" "󰍃")
+      (button :class "botonBloquear" :xalign 0.5 :onclick "~/.config/Scripts/blocki3lock.sh" "")
+      (button :class "botonCerrar" :xalign 0.5 :onclick "eww open ajustes --toggle" "")
     )
   )
 )
 
 ;; Ajustes
 (defwidget ajustes []
-  (box :class "padre" :space-evenly false :orientation "v"
-    (box :class "encabezado" :space-evenly false
-        ;;(label :text "Ajustes" :class "titulo")
-        ;;(button :class "salir" :onclick "eww open ajustes --toggle" " ")
-        (button :class "titulo" :onclick "eww open ajustes --toggle" "  Ajustes")
+  (box :class "padre" :space-evenly true :orientation "v"
+    (box :class "cuerpo" :orientation "h" :spacing 10 :halign "center" :valing "center" :space-evenly true
+      (button :class "botonDia" :xalign 0.5 :onclick "xsct 6500" "")
+      (button :class "botonAndroid" :xalign 0.5 :onclick "scrcpy" "")
+      (button :class "botonKde" :xalign 0.5 :onclick "kdeconnect-indicator" "")
+      (button :class "botones" :xalign 0.5 :onclick "~/.config/eww/scripts/xsetA.sh" "󰍹")
+      (button :class "botonCerrar" :xalign 0.5 :onclick "eww open ajustes --toggle" "")
     )
-    (box :class "hijo" :space-evenly false :orientation "v" 
-      (box :class "cuerpo" :orientation "h" :spacing 10 :halign "center" :valing "center" :space-evenly false
-        (button :class "botones" :hexpand "false" :onclick "pavucontrol" " ")
-        (button :class "botones" :hexpand "false" :onclick "scrcpy" :onrightclick "pkill scrcpy" "  ")
-      )
-      (box :class "cuerpo" :orientation "h" :spacing 10 :halign "center" :valing "center" :space-evenly false
-        (button :class "botones" :hexpand "false" :onclick "kdeconnect-indicator" "  ")
-        (button :class "botones" :hexpand "false" :onclick "pkill kdeconnect-indi" :onrightclick "pkill kdeconnectd" "  ")
-      )
-      (box :class "cuerpo" :orientation "h" :spacing 10 :halign "center" :valing "center" :space-evenly false
-        (button :class "botones" :hexpand "false" :onclick "anydesk" "  ")
-        (button :class "botones" :hexpand "false" :onclick "killall anydesk" "  ")
-      )
-      (box :class "cuerpo" :orientation "h" :spacing 10 :halign "center" :valing "center" :space-evenly false
-        (button :class "botones" :hexpand "false" :onclick "~/.config/eww/scripts/xsetA.sh" " 󰍹 ")
-        (button :class "botones" :hexpand "false" :onclick "~/.config/eww/scripts/xsetD.sh" " 󰶐 ")
-      )
+    (box :class "cuerpo" :orientation "h" :spacing 10 :halign "center" :valing "center" :space-evenly true
+      (button :class "botonNoche" :xalign 0.5 :onclick "xsct 2800" "󰃛")
+      (button :class "botonMatar" :xalign 0.5 :onclick "pkill scrcpy" "")
+      (button :class "botonMatar" :xalign 0.5 :onclick "pkill kdeconnect-indi" :onrightclick "pkill kdeconnectd" "")
+      (button :class "botones" :xalign 0.5 :onclick "~/.config/eww/scripts/xsetD.sh" "󰶐")
+      (button :class "botonVol" :xalign 0.5 :onclick "pavucontrol" "")
     )
-  )
-)
-      ;;(button :class "botones" :onclick "blueman-manager" "󰂰      Bluetooth") 
-      ;;(button :class "botones" :onclick "nm-connection-editor" "     Wifi")
-      ;;(button :class "botones" :onclick "/home/juani/Descargas/Remote-Mouse/RemoteMouse" :onrightclick "pkill RemoteMouse" "󰦋     TrackPad")
-
-;; Chats
-(defwidget chats []
-  (box :class "padre" :space-evenly false :orientation "v"
-    (box :class "encabezado" :space-evenly false
-      ;;(label :text "Chats" :class "titulo")
-      ;;(button :class "salir" :onclick "eww open chats --toggle" " ")
-      (button :class "titulo" :onclick "eww open chats --toggle" "󰭹  Chats")
-    )
-    (box :class "hijo" :space-evenly false :orientation "v"
-      (box :class "cuerpo" :orientation "h" :spacing 10 :halign "center" :valing "center" :space-evenly false
-        (button :class "botones" :hexpand "false" :onclick "brave-browser --app=https://web.whatsapp.com/" "  ")
-        (button :class "botones" :hexpand "false" :onclick "brave-browser --app=https://www.instagram.com/" "  ")
-      )
-      (box :class "cuerpo" :orientation "h" :spacing 10 :halign "center" :valing "center" :space-evenly false
-        (button :class "botones" :hexpand "false" :onclick "discord" " 󰙯 ")
-        (button :class "botones" :hexpand "false" :onclick "/opt/Telegram/Telegram" "  ") 
-      )
-    ) 
   )
 )
 
 ;; Apps
 (defwidget apps []
   (box :class "padre" :space-evenly false :orientation "v"
-    (box :class "encabezado" :space-evenly false
-      ;;(label :text "Aplicaciones" :class "titulo")
-      ;;(button :class "salir" :onclick "eww open apps --toggle" " ")
-      (button :class "titulo" :onclick "eww open apps --toggle" "󰀻  Aplicaciones")
+    (box :class "cuerpo" :orientation "h" :spacing 10 :halign "center" :valing "center" :space-evenly false
+      (button :class "botones" :hexpand "false" :onclick "kitty -e nvim" "")
+      (button :class "botones" :hexpand "false" :onclick "sqlitebrowser" " 󰆼 ")
     )
-    (box :class "hijo" :space-evenly false :orientation "v"
-      (box :class "cuerpo" :orientation "h" :spacing 10 :halign "center" :valing "center" :space-evenly false
-        (button :class "botones" :hexpand "false" :onclick "code" " 󰨞 ")
-        (button :class "botones" :hexpand "false" :onclick "sqlitebrowser" " 󰆼 ")
-      )
-      (box :class "cuerpo" :orientation "h" :spacing 10 :halign "center" :valing "center" :space-evenly false
-        (button :class "botones" :hexpand "false" :onclick "flatpak run com.valvesoftware.Steam" "  ")
-        (button :class "botones" :hexpand "false" :onclick "spotify" "  ")
-      )
+    (box :class "cuerpo" :orientation "h" :spacing 10 :halign "center" :valing "center" :space-evenly false
+      (button :class "botones" :hexpand "false" :onclick "flatpak run com.valvesoftware.Steam" "  ")
+      (button :class "botones" :hexpand "false" :onclick "spotify" "  ")
     )
-    
   )
-)
-
-;; Centro de Notificaciones
-(defwidget centro []
-    (box :class "padre" :space-evenly false :orientation "v"
-      (box :class "encabezado" :space-evenly false
-        (button :class "titulo" :onclick "eww open cetro --toggle" "Notificaciones")
-      )
-      (box :class "hijo" :space-evenly false :orientation "v"
-        (label :text notis)
-      )
-    )
 )
 
 ;; To-Do List
@@ -140,28 +292,10 @@
   )
 )
 
-;; Apps Web
-(defwidget appsW []
-  (box :class "padre" :space-evenly false :orientation "v"
-    (box :class "encabezado" :space-evenly false
-      (label :text "Aplicaciones Web" :class "titulo")
-      ;;(button :class "salir" :onclick "eww open appsW --toggle" " ")
-    )
-    (box :class "cuerpo" :orientation "v" :halign "center" :valing "center" :space-evenly false
-      (button :class "botones" :onclick "brave-browser --app=https://chatgpt.com/" "󰚩      Chat GPT")
-      (button :class "botones" :onclick "brave-browser --app=https://open.spotify.com/intl-es" "      Spotify")
-      (button :class "botones" :onclick "brave-browser --app=https://translate.google.com/?hl=es&sl=es&tl=en&op=translate" "󰗊      Traductor")
-      (button :class "botones" :onclick "brave-browser" "      Brave Browser")
-    )
-  )
-)
-
 ;; Calendario
-(defwidget time []
-    (box :class "date-container" :orientation "h" :space-evenly false ;;:halign "center"
-      (label :text "${completeday}" :class "titulo")
-      ;;(button :class "salir" :onclick "eww open date --toggle" " ")
-
+(defwidget time [] 
+    (box :class "date-container" :orientation "h" :space-evenly false ;;:halign "fill"
+      (label :text "${completeday}" :class "fecha")
     )
 )
 
@@ -186,14 +320,25 @@
   )
 )
 
+(defwidget climaD []
+  (box :class "climaDs" :space-evenly false :orientation "v"
+    (box :class "cuerpo" :orientation "v" :halign "fill" :valing "center" :space-evenly false
+      (label :text "Proximos días" :class "tituloClimaD")
+      (separador)
+      (label :text infoClimaDs)
+    )
+  )
+)
+
 (defwidget date []
   (box :class "date"
        :orientation "v"
        :space-evenly false
        :spacing 5
-    (time)
-    (cal) 
+    (time2)
     (clima)
+    (cal) 
+    (climaD)
   )
 )
 
@@ -217,7 +362,7 @@
 
 ;; Calendario
 (defwindow date
-  :geometry (geometry :x "-10px" :y "40px" :anchor "top right")
+  :geometry (geometry :x "-10px" :y "40px" :anchor "top right" :width "305px")
   :wm-ignore true
 (date))
 
@@ -227,35 +372,12 @@
   :wm-ignore true
 (menu))
 
-;; Centro Notificaciones
-(defwindow centro
-  :geometry (geometry :x "-10" :y "40" :anchor "top right")
-  :wm-ignore true
-(centro))
-
 ;; Ajustes
 (defwindow ajustes
-  :geometry (geometry :x "-305px" :y "40px" :anchor "top right")
+  ;;:geometry (geometry :x "-305px" :y "40px" :anchor "top right")
+  :geometry (geometry :x "-10px" :y "40px" :anchor "top right" :max-height "100px" :width "305px")
   :wm-ignore true
-(ajustes))
-
-;; Chats
-(defwindow chats
-  :geometry (geometry :x "202px" :y "40px" :anchor "top left")
-  :wm-ignore true
-(chats))
-
-;; Apps Web
-(defwindow appsW
-  :geometry (geometry :x "210px" :y "40px" :anchor "top left")
-  :wm-ignore true
-(appsW))
-
-;; Apps
-(defwindow apps
-  :geometry (geometry :x "180px" :y "40px" :anchor "top left")
-  :wm-ignore true
-(apps))
+(media_widget))
 
 ;; To-Do
 (defwindow todo
@@ -263,3 +385,12 @@
   :wm-ignore true
 (to-do))
 
+;; Notis
+(defwindow notis
+  :geometry (geometry :x "-10" :y "40px" :anchor "top right" :width "305px")
+  :stacking "overlay"
+  :exclusive true
+  :focusable false
+  :windowtype "dialog"
+  :wm-ignore true
+(notification_center))

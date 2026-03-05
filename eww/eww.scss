@@ -1,21 +1,24 @@
 @import "/home/juani/.cache/wal/colors.scss"
 
-*{ all: unset;}
+*{ 
+  all: unset;
+  font-family: Ubuntu Regular;
+}
 
 // Padre
 .padre{
     background-color: $background;
-    border-radius: 10px;
+    border-radius: 0.5rem;
     border: 2px solid $foreground;
     padding: 8px;
 }
 
 // Hijo
 .hijo{
-    margin: 10px 5px 5px 5px;             // arriba, derecha, abajo, izquierda
-    border: 2px solid $foreground;
-    border-radius: 0.5rem;
-    padding: 0.5rem 0.5rem 0.5rem 0.5rem; // arriba, derecha, abajo, izquierda
+  margin: 0px;
+  border: 2px solid $foreground;
+  border-radius: 0.5rem;
+  padding: 5px; // arriba, derecha, abajo, izquierda
 }
 
 // Encabezado
@@ -27,45 +30,225 @@
 // Titulo
 .titulo{
     //margin-right: 50px;
-    margin-left: 5px;
+    font-size: 18px;
+    margin-left: 8px;
     color: $foreground;
 }
 
-/* Cuerpo
-.cuerpo{
-    margin: 10px 5px 5px 5px;             // arriba, derecha, abajo, izquierda
-    border: 2px solid $foreground;
-    border-radius: 0.3rem;
-    padding: 0.5rem 0.9rem 0.5rem 0.9rem; // arriba, derecha, abajo, izquierda
-}*/
+.separador{
+  min-height: 1px;
+  // min-width: 250px;
+  background-color: $foreground;
+  margin: 5px;
+}
 
 // Menu de Apagado
-.power{
-  //background-color: transparent;
-  font-size: 25px;
-  border-radius: 10px;
-  //border-radius: 0.5rem;
+.botonApagar{
+  background-color: $background;
+  color: $foreground;
+  font-weight: Bolder;
+  font-size: 18px;
+  border-radius: 0.4rem;
+  border: 0px solid $foreground;
+  margin: 2px;
+  padding: 2px 14px 2px 9px; // arriba, derecha, abajo, izquierda
+
+  &:active{
+    background-color: $background;
+    color: $background;
+  }
+
+  &:focus{
+    outline: none;
+  }
+
+  &:hover{
+    background-color: $color2;
+    color: $foreground;
+  }
+}
+.botonReiniciar{
+  background-color: $background;
+  color: $foreground;
+  font-weight: Bolder;
+  font-size: 18px;
+  border-radius: 0.4rem;
+  border: 0px solid $foreground;
+  margin: 2px;
+  padding: 3px 17px 2px 10px; // arriba, derecha, abajo, izquierda
+
+  &:active{
+    background-color: $background;
+    color: $background;
+  }
+
+  &:focus{
+    outline: none;
+  }
+
+  &:hover{
+    background-color: $color2;
+    color: $foreground;
+  }
+}
+.botonSesion{
+  background-color: $background;
+  color: $foreground;
+  font-weight: Bolder;
+  font-size: 18px;
+  border-radius: 0.4rem;
+  border: 0px solid $foreground;
+  margin: 2px;
+  padding: 2px 9px 2px 7px; // arriba, derecha, abajo, izquierda
+
+  &:active{
+    background-color: $background;
+    color: $background;
+  }
+
+  &:focus{
+    outline: none;
+  }
+
+  &:hover{
+    background-color: $color2;
+    color: $foreground;
+  }
+}
+.botonBloquear{
+  background-color: $color3;
+  color: $foreground;
+  font-weight: Bolder;
+  font-size: 18px;
+  border-radius: 0.4rem;
+  border: 0px solid $foreground;
+  margin: 2px;
+  padding: 3px 14px 4px 9px; // arriba, derecha, abajo, izquierda
+
+  &:active{
+    background-color: $background;
+    color: $background;
+  }
+
+  &:focus{
+    outline: none;
+  }
+
+  &:hover{
+    background-color: $color2;
+    color: $foreground;
+  }
+}
+.botonCerrar{
+  background-color: $color3;
+  color: $foreground;
+  font-weight: Bolder;
+  font-size: 22px;
+  border-radius: 0.4rem;
+  border: 0px solid $foreground;
+  margin: 2px;
+  padding: 2px 8px 2px 8px; // arriba, derecha, abajo, izquierda
+
+  &:active{
+    background-color: $background;
+    color: $background;
+  }
+
+  &:focus{
+    outline: none;
+  }
+
+  &:hover{
+    background-color: $color2;
+    color: $foreground;
+  }
+}
+.botonBlocPags{
+  background-color: $background;
+  color: $foreground;
+  font-weight: Bolder;
+  font-size: 22px;
+  border-radius: 0.4rem;
+  border: 0px solid $foreground;
+  margin: 2px;
+  padding: 2px 16px 2px 8px; // arriba, derecha, abajo, izquierda
+
+  &:active{
+    background-color: $background;
+    color: $background;
+  }
+
+  &:focus{
+    outline: none;
+  }
+
+  &:hover{
+    background-color: $color2;
+    color: $foreground;
+  }
 }
 
 // Ajustes
-.ajustes{
-  font-size: 25px;
+.media-widget-container {
+  background-color: $background;
+  // opacity: 0.85;
+  padding: 10px; 
+  border: 2px solid $foreground;
   border-radius: 10px;
-  //border-radius: 0.5rem;
+  // min-height: 230px;
 }
 
-// Chats
-.chats{
-  font-size: 25px;
-  border-radius: 10px;
-  //border-radius: 0.5rem;
+// .media-cover-widget {
+//   min-width: 100px;
+//   min-height: 100px;
+//   background-color: transparent;
+//   border-radius: 10px;  
+//   margin-bottom: 10px;
+// }
+
+.media-widget-info {
+  background-color: $background;
+  margin: 0px;
+  padding: 10px;
+  border: 2px solid $foreground;
+  border-radius: 0.5rem;
 }
 
-// Apps Web
-.appsW{
-  font-size: 25px;
-  border-radius: 10px;
-  //border-radius: 0.5rem;
+.media-widget-name {
+  font-size: 12px;
+  color: $foreground;
+}
+
+.media-widget-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: $foreground;
+}
+
+.media-widget-artist {
+  font-size: 14px;
+  color: $foreground;
+}
+
+.media-widget-controls {
+  background-color: $color3;
+  border-radius: 0.4rem;
+  padding: 0;
+}
+
+.media-widget-btn {
+  margin: 0;
+  color: $background;
+  &:hover{
+    color: $color7;
+  }
+}
+
+.media-widget-btn-play{
+  color: $background;
+  &:hover{
+    color: $color7;
+  }
 }
 
 // Apps
@@ -77,17 +260,182 @@
 
 // Botones de todos los widgets
 .botones{
-  //background-color: $color9;
   background-color: $background;
   color: $foreground;
-  //font-size: 20px;
+  font-weight: Bolder;
+  font-size: 18px;
   border-radius: 0.4rem;
-  //border: 2px solid $background;
-  //outline: none;
-  //margin-top: 4px;
-  margin: 5px 5px 5px 5px;
-  padding: 0.5rem 0.5rem 0.5rem 0.5rem; // arriba, derecha, abajo, izquierda
-  //padding: 8px;
+  border: 0px solid $foreground;
+  margin: 2px;
+  padding: 2px 15px 2px 7px; // arriba, derecha, abajo, izquierda
+
+  &:active{
+    background-color: $background;
+    color: $background;
+  }
+
+  &:focus{
+    outline: none;
+  }
+
+  &:hover{
+    background-color: $color2;
+    color: $foreground;
+  }
+}
+.botonDia{
+  background-color: $background;
+  color: $foreground;
+  font-weight: Bolder;
+  font-size: 18px;
+  border-radius: 0.4rem;
+  border: 0px solid $foreground;
+  margin: 2px;
+  padding: 2px 15px 2px 8px; // arriba, derecha, abajo, izquierda
+
+  &:active{
+    background-color: $background;
+    color: $background;
+  }
+
+  &:focus{
+    outline: none;
+  }
+
+  &:hover{
+    background-color: $color2;
+    color: $foreground;
+  }
+}
+.botonNoche{
+  background-color: $background;
+  color: $foreground;
+  font-weight: Bolder;
+  font-size: 18px;
+  border-radius: 0.4rem;
+  border: 0px solid $foreground;
+  margin: 2px;
+  padding: 2px 12px 2px 10px; // arriba, derecha, abajo, izquierda
+
+  &:active{
+    background-color: $background;
+    color: $background;
+  }
+
+  &:focus{
+    outline: none;
+  }
+
+  &:hover{
+    background-color: $color2;
+    color: $foreground;
+  }
+}
+.botonVol{
+  background-color: $background;
+  color: $foreground;
+  font-weight: Bolder;
+  font-size: 18px;
+  border-radius: 0.4rem;
+  border: 0px solid $foreground;
+  margin: 2px;
+  padding: 2px 20px 2px 9px; // arriba, derecha, abajo, izquierda
+
+  &:active{
+    background-color: $background;
+    color: $background;
+  }
+
+  &:focus{
+    outline: none;
+  }
+
+  &:hover{
+    background-color: $color2;
+    color: $foreground;
+  }
+}
+.botonAndroid{
+  background-color: $background;
+  color: $foreground;
+  font-weight: Bolder;
+  font-size: 22px;
+  border-radius: 0.4rem;
+  border: 0px solid $foreground;
+  margin: 2px;
+  padding: 2px 12px 2px 12px; // arriba, derecha, abajo, izquierda
+
+  &:active{
+    background-color: $background;
+    color: $background;
+  }
+
+  &:focus{
+    outline: none;
+  }
+
+  &:hover{
+    background-color: $color2;
+    color: $foreground;
+  }
+}
+.botonKde{
+  background-color: $background;
+  color: $foreground;
+  font-weight: Bolder;
+  font-size: 20px;
+  border-radius: 0.4rem;
+  border: 0px solid $foreground;
+  margin: 2px;
+  padding: 5px 15px 2px 12px; // arriba, derecha, abajo, izquierda
+
+  &:active{
+    background-color: $background;
+    color: $background;
+  }
+
+  &:focus{
+    outline: none;
+  }
+
+  &:hover{
+    background-color: $color2;
+    color: $foreground;
+  }
+}
+.botonMatar{
+  background-color: $background;
+  color: $foreground;
+  font-weight: Bolder;
+  font-size: 18px;
+  border-radius: 0.4rem;
+  border: 0px solid $foreground;
+  margin: 2px;
+  padding: 2px 15px 2px 9px; // arriba, derecha, abajo, izquierda
+
+  &:active{
+    background-color: $background;
+    color: $background;
+  }
+
+  &:focus{
+    outline: none;
+  }
+
+  &:hover{
+    background-color: $color2;
+    color: $foreground;
+  }
+}
+.botonTerminal{
+  background-color: $background;
+  color: $foreground;
+  font-weight: Bolder;
+  font-size: 22px;
+  border-radius: 0.4rem;
+  border: 0px solid $foreground;
+  margin: 2px;
+  padding: 2px 12px 2px 8px; // arriba, derecha, abajo, izquierda
 
   &:active{
     background-color: $background;
@@ -118,24 +466,26 @@
   background-color: $background;
   color: #ffffff;
   border: 2px solid $foreground;
+  // border-radius: 0.5rem;
   border-radius: 10px;
-  //border-radius: 0.5rem;
   padding: 0.5rem 0.9rem 0.5rem 0.9rem; // arriba, derecha, abajo, izquierda
 }
 
 .date-container {
     font-family: Ubuntu Regular;
     font-weight: Bolder;
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: $foreground;
-    margin: 5px 0;
+    // margin: 0px 0px 0px 0px;
+    margin: 0px 80px 0px 0px;
   }
 
 .cal-box{
   font-family: Ubuntu Regular;
-  background-color: $foreground;
-  color: #ffffff;
-  border-radius: 0.3rem;
+  background-color: $background;
+  color: $foreground;
+  border-radius: 0.4rem;
+  border: 2px solid $color3;
   padding: 0.2rem 0.2rem 0.2rem 0.2rem; // arriba, derecha, abajo, izquierda
 
   .cal{
@@ -153,30 +503,58 @@ calendar.button{
 
 calendar.highlight{
   color: $foreground;
-  font-weight: bold;
 }
 
 calendar:selected{
-  color: $color5;
-  font-weight: bold;
+  color: $color3;
 }
 
 calendar:indeterminate{
   color: #555555;
 }
 
+.fecha{
+  font-family: Ubuntu Regular;
+  font-weight: Bolder;
+  font-size: 14px;
+  background-color: $background;
+  color: $foreground;
+  border-radius: 0.4rem;
+  margin: 0 0 0 0; // arriba, derecha, abajo, izquierda
+  padding: 0 10px 0 5px; // arriba, derecha, abajo, izquierda
+}
 .clima{
   font-family: Ubuntu Regular;
   font-weight: Bolder;
+  font-size: 20px;
+  background-color: $color3;
+  color: $background;
+  border: 0px solid $foreground;
+  border-radius: 0.4rem;
+  margin: 2px 0px 5px 0px; // arriba, derecha, abajo, izquierda
+  padding: 0.5rem 0.9rem 0.5rem 0.9rem; // arriba, derecha, abajo, izquierda
+}
+.tituloClimaD{
   font-size: 18px;
+  background-color: $color3;
+  color: $background;
+  border-radius: 0.4rem;
+  margin: 2px 5px 5px 5px;
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem; // arriba, derecha, abajo, izquierda
+}
+.climaDs{
+  font-family: Ubuntu Regular;
+  font-weight: Bolder;
+  font-size: 16px;
   background-color: $background;
   color: $foreground;
   margin: 5px 0;
   border: 2px solid $foreground;
-  border-radius: 0.3rem;
+  border-radius: 0.4rem;
   padding: 0.5rem 0.5rem 0.5rem 0.5rem; // arriba, derecha, abajo, izquierda
 }
 
+// To Do
 .to-do{
   font-family: Ubuntu Regular;
   //font-weight: Bolder;
@@ -189,32 +567,136 @@ calendar:indeterminate{
   padding: 0.5rem 0.5rem 0.5rem 0.5rem; // arriba, derecha, abajo, izquierda
 }
 
+// Notificaciones
+.notification-center-container{
+  font-family: Ubuntu Regular;
+  //font-weight: Bolder;
+  // font-size: 16px;
+  background-color: $background;
+  color: $foreground;
+  margin: 0px 0px 0px 0px;             // arriba, derecha, abajo, izquierda
+  border: 2px solid $foreground;
+  // border-radius: 10px;
+  border-radius: 0.5rem;
+  padding: 0.9rem 0.9rem 0.9rem 0.9rem; // arriba, derecha, abajo, izquierda
+}
+
+.notification-header-title{
+  // background-color: $color2;
+  color: $foreground;
+  font-weight: Bolder;
+  font-size: 16px;
+  margin: 0px 0px 3px 0px; // arriba, derecha, abajo, izquierda
+  padding: 0px;
+}
+
+.notification-item{
+  background-color: $color3;
+  color: $background;
+  border-radius: 0.5rem;
+  border: 0px solid $foreground;
+  margin: 0px;
+  padding: 10px;
+}
+
+.notification-appname{
+  font-weight: Bolder;
+}
+
+.botonesNA{
+  background-color: $background;
+  font-size: 18px;
+  font-weight: Bolder;
+  border-radius: 0.4rem;
+  margin: 2px;
+  padding: 2px 4px 2px 10px; // arriba, derecha, abajo, izquierda
+
+  &:active{
+    background-color: $background;
+    color: $background;
+  }
+
+  &:focus{
+    outline: none;
+  }
+
+  &:hover{
+    background-color: $color2;
+    color: $foreground;
+  }
+}
+.botonesND{
+  background-color: $background;
+  font-size: 18px;
+  font-weight: Bolder;
+  border-radius: 0.4rem;
+  margin: 2px;
+  padding: 2px 8px 2px 10px; // arriba, derecha, abajo, izquierda
+
+  &:active{
+    background-color: $background;
+    color: $background;
+  }
+
+  &:focus{
+    outline: none;
+  }
+
+  &:hover{
+    background-color: $color2;
+    color: $foreground;
+  }
+}
+.botonBN{
+  background-color: $background;
+  color: $foreground;
+  font-weight: Bolder;
+  font-size: 22px;
+  border-radius: 0.4rem;
+  border: 0px solid $foreground;
+  margin: 2px;
+  padding: 2px 12px 2px 12px; // arriba, derecha, abajo, izquierda
+
+  &:active{
+    background-color: $background;
+    color: $background;
+  }
+
+  &:focus{
+    outline: none;
+  }
+
+  &:hover{
+    background-color: $color2;
+    color: $foreground;
+  }
+}
+
 // Bloqueo de Pantalla
 .date-container2 {
     font-family: Ubuntu Regular;
     font-weight: Bolder;
     //font-size: 1rem;
-    //background-color: $background;
-    background-color: transparent;
+    background-color: $background;
     color: $foreground;
     //border: 4px solid $foreground;
     border-radius: 0.5rem;
-    margin: 5px 0;
-    padding: 0.9rem 0.9rem 0.9rem 0.9rem;
+    margin: 0px 0 0 0;
+    padding: 0 0 0 0;
   }
 
 .hora-bloqueo {
     font-size: 70px;
     //background-color: $background;
     //color: $foreground;
-    margin: 5px 0;
-    padding: 0.9rem 0.9rem 0.1rem 0.9rem;
+    margin: 0px 0 0 0;
+    padding: 0 0 0 0;
 }
 
 .fecha-bloqueo {
     font-size: 20px;
     //background-color: $background;
     //color: $foreground;
-    margin: 5px 0;
-    padding: 0.1rem 0.9rem 0.9rem 0.9rem; // arriba, derecha, abajo, izquierda
+    margin: 0px 0 0 0; // arriba, derecha, abajo, izquierda
+    padding: 0px 0 0 0; // arriba, derecha, abajo, izquierda
 }
