@@ -1,0 +1,2 @@
+esta carpeta "themes" iría en: "~/.themes" así como "~/.config", en la misma ruta, fuera de cualquier otra carpeta, y siendo una carpeta oculta, y ahí van todos los temas gtk.
+En la carpeta: "~/.config/gtk-3.0" va el archivo "settings.ini"
