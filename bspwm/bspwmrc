@@ -50,8 +50,7 @@ bspc config presel_feedback_color "$color7"
 # REGLAS
 bspc rule -a Brave-browser desktop=^1 follow=on
 bspc rule -a zen desktop=^1 follow=on
-bspc rule -a steam desktop=^2 follow=off
-bspc rule -a steam_app_485510 desktop=^3 follow=on
+bspc rule -a steam desktop=^2 follow=on
 bspc rule -a obs desktop=^3 follow=on
 bspc rule -a Blueman-manager state=floating
 bspc rule -a discord desktop=^4 follow=on
