@@ -7,7 +7,7 @@ import locale
 
 locale.setlocale(locale.LC_TIME, "es_ES.utf8")
 
-API = "API_KEY"
+API = "9905efc14434d8ffdfa28fbdc47a3ebf"
 UNIDADES = 'metric'
 IDIOMA = 'es'
 CIUDAD = "Villa Carlos Paz"

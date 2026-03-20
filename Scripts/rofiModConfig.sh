@@ -1,7 +1,7 @@
 #!/bin/bash
 
 BSPWM="$HOME/.config/bspwm/bspwmrc"
-POLYBAR="$HOME/.config/polybar/config"
+POLYBAR="$HOME/.config/polybar/config.ini"
 DUNST="$HOME/.config/dunst/dunstrc"
 KITTY="$HOME/.config/kitty/kitty.conf"
 PICOM="$HOME/.config/picom/picom.conf"

@@ -29,6 +29,7 @@ set_wallpaper() {
     #eww reload
     bspc wm -r
     ~/.config/Scripts/PywalDunst.sh
+    ~/.config/Scripts/GTK-PyWal.sh
 }
 
 # Si elige "Fondo aleatorio"

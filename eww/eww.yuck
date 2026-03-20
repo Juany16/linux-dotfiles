@@ -23,10 +23,12 @@
 ;; Notis Var
 (defpoll notis :interval "10s" "~/.config/eww/scripts/notis.sh")
 
+;;(defvar dnd false)
+
 ;; Music polls
-(deflisten media_info 
-    :initial '{"player": "", "status": "Stopped", "title": "No Media", "artist": "", "cover": ""}'
-    "~/.config/eww/scripts/musicaSpotify.sh")
+;;(deflisten media_info 
+;;    :initial '{"player": "", "status": "Stopped", "title": "No Media", "artist": "", "cover": ""}'
+;;    "~/.config/eww/scripts/musicaSpotify.sh")
 
 ;; Poll untuk Notifikasi (Dunst) - UPDATED
 (defpoll notification_count :interval "2s"
@@ -79,6 +81,11 @@
   )
 )
 
+;;(defwidget dnd-switch []
+;;  (eventbox :onclick "eww update dnd=!{dnd}; ~/.config/eww/scripts/toggle_dnd.sh"
+;;    (box :class "switch ${dnd ? 'on' : 'off'}"
+;;      (box :class "switch-handle"))))
+
 ;; Centro de Notificaciones
 (defwidget notification_center []
   (box :class "notification-center-container"
@@ -96,7 +103,10 @@
              :halign "start"
              :hexpand true)
       (button :class "botonesNA" :halign "fill" :hexpand "false" :onclick "dunstctl set-paused false" " ")
-      (button :class "botonesND" :halign "fill" :hexpand "false" :onclick "dunstctl set-paused true" " ")
+      (button :class "botonesND" :halign "fill" :hexpand "false" :onclick "dunstctl set-paused true" " ") 
+;;      (box :orientation "horizontal"
+;;        (label :text "No molestar")
+;;          (dnd-switch))
       (button :class "botonBN" :onclick "dunstctl history-clear && eww update notification_history='[]'" :xalign 1 "󰆴")
     )
     
@@ -187,47 +197,46 @@
          ;;:visible {media_info.cover != ""})
     
     ;; Media Info
-    (box :class "media-widget-info"
-         :orientation "v"  
-         :space-evenly false
-         :spacing 10
+;;    (box :class "media-widget-info"
+;;         :orientation "v"  
+;;         :space-evenly false
+;;         :spacing 10
       
       ;; Label section
-      (box :orientation "v"
-           :space-evenly false
-           :hexpand true
-           :halign "center"
-        (label :class "media-widget-name"
-               :text {media_info.player}
-               :visible {media_info.player != ""}
-               :xalign 0.5)
-        (label :class "media-widget-title"
-               :text {media_info.title}
-               :limit-width 35
-               :xalign 0.5)
-        (label :class "media-widget-artist"
-               :text {media_info.artist}
-               :limit-width 35
-               :xalign 0.5))
+;;      (box :orientation "v"
+;;           :space-evenly false
+;;           :hexpand true
+;;           :halign "center"
+;;        (label :class "media-widget-name"
+;;               :text {media_info.player}
+;;               :visible {media_info.player != ""}
+;;               :xalign 0.5)
+;;        (label :class "media-widget-title"
+;;               :text {media_info.title}
+;;               :limit-width 35
+;;               :xalign 0.5)
+;;        (label :class "media-widget-artist"
+;;               :text {media_info.artist}
+;;               :limit-width 35
+;;               :xalign 0.5))
       
       ;; Controls
-    (box :class "media-widget-controls" :halign "fill" :spacing 5
-        (button :class "media-widget-btn"
-                :onclick "playerctl -p ${media_info.player} previous"
-          (box :width 30 :height 30 :halign "center" :valign "center"
-            (label :text "󰒮" :style "font-size: 28px;")))
-        
-        (button :class "media-widget-btn-play"
-                :onclick "playerctl -p ${media_info.player} play-pause"
-          (box :width 30 :height 30 :halign "center" :valign "center"
-            (label :text {media_info.status == "Playing" ? "󰏤" : "󰐊"}                       :style "font-size: 32px;")))
-        
-        (button :class "media-widget-btn"
-                :onclick "playerctl -p ${media_info.player} next"
-          (box :width 30 :height 30 :halign "center" :valign "center"
-            (label :text "󰒭" :style "font-size: 28px;"))))
-
-    )
+;;    (box :class "media-widget-controls" :halign "fill" :spacing 5
+;;        (button :class "media-widget-btn"
+;;                :onclick "playerctl -p ${media_info.player} previous"
+;;          (box :width 30 :height 30 :halign "center" :valign "center"
+;;            (label :text "󰒮" :style "font-size: 28px;")))
+;;        
+;;        (button :class "media-widget-btn-play"
+;;                :onclick "playerctl -p ${media_info.player} play-pause"
+;;          (box :width 30 :height 30 :halign "center" :valign "center"
+;;            (label :text {media_info.status == "Playing" ? "󰏤" : "󰐊"}                       :style "font-size: 32px;")))
+;;        
+;;        (button :class "media-widget-btn"
+;;                :onclick "playerctl -p ${media_info.player} next"
+;;          (box :width 30 :height 30 :halign "center" :valign "center"
+;;            (label :text "󰒭" :style "font-size: 28px;"))))
+    ;;)
     (notification_center)
     ))
 
