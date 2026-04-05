@@ -159,7 +159,7 @@ super + {_,shift + }{1-9,0}
     bspc {desktop -f,node -d} '^{1-9,10}' --follow
 
 # activar y desactivar bordes
-ctrl + alt + b : {p,a}
+ctrl + alt + b ; {p,a}
     bspc config border_width {2,0}
 
 #
