@@ -25,7 +25,9 @@ super + shift + Escape
 # ATAJOS INDEPENDIENTES
 #
 
+# ===============
 # Scripts de Rofi
+# ===============
 
 super + Escape
     rofi -show drun -show-icons
@@ -69,7 +71,9 @@ ctrl + shift + alt + n
 #super + w
 #    ~/.config/Scripts/selectorWifi.sh
 
+# ============
 # Aplicaciones
+# ============
 
 super + {_,shift + }Return
     {kitty,xfce4-terminal}
@@ -113,8 +117,8 @@ super + ctrl + p
 super + ctrl + Return
     bspc node -g sticky; bspc node -g hidden
 super + alt + Return
-    for vnt in $(bspc query -N -n .hidden.window); do bspc node $vnt -g hidden=off; bspc node $vnt -g sticky=off -f; done;
-    #~/.config/Scripts/OcultarVnt.sh
+    ~/.config/Scripts/rofiVntEscondidas.sh
+    # for vnt in $(bspc query -N -n .hidden.window); do bspc node $vnt -g hidden=off; bspc node $vnt -g sticky=off -f; done;
 
 #
 # ENFOCAR Y CAMBIAR | FOCUS / SWAP
@@ -153,6 +157,10 @@ ctrl + shift + {a,s}
 # enfocar o mandar una ventana a otra area de trabajo
 super + {_,shift + }{1-9,0}
     bspc {desktop -f,node -d} '^{1-9,10}' --follow
+
+# activar y desactivar bordes
+ctrl + alt + b : {p,a}
+    bspc config border_width {2,0}
 
 #
 # MOVER Y REDIMENCIONAR | MOVE / RESIZE

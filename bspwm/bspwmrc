@@ -22,9 +22,10 @@ $HOME/.config/polybar/launch.sh
 
 # CONFIGURACIONES
 bspc monitor -d 1 2 3 4 5 6
+bspc desktop 6 -l monocle
 
 # Gaps internos y Bordes
-bspc config border_width          2  # bordes de la ventana
+bspc config border_width          0  # bordes de la ventana
 bspc config window_gap            10 # gaps internos (entre ventanas)
 
 # Gaps externos
@@ -35,7 +36,7 @@ bspc config top_padding            30 # si la barra esta pegada al tope de la pa
 #bspc config bottom_padding        0
 
 bspc config focus_follows_pointer true
-bspc config pointer_follows_focus false
+bspc config pointer_follows_focus true
 
 bspc config split_ratio          0.50
 bspc config borderless_monocle   false
@@ -56,10 +57,8 @@ bspc rule -a Blueman-manager state=floating
 bspc rule -a discord desktop=^4 follow=on
 bspc rule -a TelegramDesktop desktop=^4 follow=on
 bspc rule -a Spotify desktop=^5 follow=off
-#bspc rule -a Spotify desktop=^5 state=pseudo_tiled center=on follow=on
 bspc rule -a Chromium-browser state=floating
-bspc rule -a Tk desktop=^6 follow=on
-#bspc rule -a Tk desktop=^6 state=floating center=on follow=on
+bspc rule -a Tk:tk:Daily\ List desktop=^6 follow=on
 
 bspc rule -a Pavucontrol state=floating
 bspc rule -a Nm-connection-editor state=floating
