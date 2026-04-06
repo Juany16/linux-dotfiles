@@ -2,10 +2,12 @@
 
 if [ -f /tmp/polybarhidden ]; then 
   polybar-msg cmd show 
+  polybar-msg -p $(pgrep -f "polybar minibar") cmd hide
   bspc config top_padding 30 
   rm /tmp/polybarhidden 
 else 
   polybar-msg cmd hide 
+  polybar-msg -p $(pgrep -f "polybar minibar") cmd hide
   bspc config top_padding 0 
   touch /tmp/polybarhidden 
 fi

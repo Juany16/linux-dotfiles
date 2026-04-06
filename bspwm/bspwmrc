@@ -19,6 +19,7 @@ pkil picom
 picom --config ~/.config/picom/picom.conf &
 . "${HOME}/.cache/wal/colors.sh" #PYWAL
 $HOME/.config/polybar/launch.sh
+# $HOME/.config/polybar/tinybar.sh
 
 # CONFIGURACIONES
 bspc monitor -d 1 2 3 4 5 6
