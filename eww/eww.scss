@@ -27,7 +27,7 @@
 // Padre
 .padre{
     background-color: $background;
-    border-radius: 0.5rem;
+    border-radius: 10px;
     border: 2px solid $foreground;
     padding: 8px;
 }
@@ -582,7 +582,7 @@ calendar:indeterminate{
   color: $foreground;
   margin: 10px 5px 5px 5px;             // arriba, derecha, abajo, izquierda
   border: 2px solid $foreground;
-  border-radius: 0.5rem;
+  border-radius: 0.4rem;
   padding: 0.5rem 0.5rem 0.5rem 0.5rem; // arriba, derecha, abajo, izquierda
 }
 
