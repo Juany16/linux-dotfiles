@@ -115,6 +115,7 @@ alias bloqp="bash ~/.config/Scripts/BloqueoPaginas.sh"
 alias dsloqp="bash ~/.config/Scripts/DesbloqueoPaginas.sh"
 alias py3="python3"
 alias fgt="figlet"
+alias hspant="scrntime -s 3"
 
 alias blackjack="bash ~/.config/Scripts/BlackJack.sh"
 
