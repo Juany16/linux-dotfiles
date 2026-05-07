@@ -44,9 +44,11 @@ if [ "$CHOICE" == "Fondo aleatorio" ]; then
 
 # Si elige "Elegir fondo"
 elif [ "$CHOICE" == "Elegir fondo" ]; then
-    NOMBRE_FONDOS=$(find "$DIRECTORIO_IMAGENES" -type f -name "*.png" -exec basename {} \;)
     # Elegir un fondo de pantalla usando rofi
-    FONDO=$(echo "$NOMBRE_FONDOS" | rofi -dmenu -i -p "󰸉 ")
+    CWD="($pwd)"
+    cd "$DIRECTORIO_IMAGENES" || exit
+    IFS=$"\n"
+    FONDO=$(for a in *.jpg *.png; do echo -en "$a\0icon\x1f$a\n" ; done | rofi -dmenu -show-icons -theme ~/.local/share/rofi/themes/selector-fondos.rasi -p "󰸉 ")
     
     if [ -n "$FONDO" ]; then
         FONDO_ELEGIDO=$(find "$DIRECTORIO_IMAGENES" -type f -name "$FONDO")
@@ -58,6 +60,7 @@ elif [ "$CHOICE" == "Elegir fondo" ]; then
     else
         echo "No seleccionaste ningún fondo."
     fi
+    cd "$CWD" || exit
 else
     echo "Opción no válida."
 fi
