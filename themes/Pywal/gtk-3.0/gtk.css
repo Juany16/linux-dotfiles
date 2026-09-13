@@ -1,9 +1,9 @@
 /* ===== Colores base ===== */
-@define-color bg_color #0B0208;
-@define-color fg_color #c99c9e;
-@define-color accent_color #C95C3D;
-@define-color button_bg #4C3C64;
-@define-color button_hover #8c6d6e;
+@define-color bg_color #111118;
+@define-color fg_color #dfd4d6;
+@define-color accent_color #7C98C2;
+@define-color button_bg #626F96;
+@define-color button_hover #9c9495;
 
 /* ===== Ventanas ===== */
 .view{
@@ -242,4 +242,23 @@ tooltip {
     color: @fg_color;
     border-radius: 6px;
     border: 1px solid @bg_color;
+}
+
+scrollbar {
+    background-color: @bg_color;
+}
+
+scrollbar trough {
+    background-color: @bg_color;
+}
+
+scrollbar slider {
+    background-color: @button_bg;
+    min-width: 10px;
+    min-height: 10px;
+    border-radius: 6px;
+}
+
+scrollbar slider:hover {
+    background-color: @button_hover;
 }
