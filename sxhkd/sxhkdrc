@@ -61,15 +61,16 @@ super + alt + p
 {_,super + }Pause
     {~/.config/Scripts/rofiMusica.sh,~/.config/Scripts/rofiYT.sh}
 
-ctrl + shift + alt + n
-    ~/.config/Scripts/rofiNotas.sh
+# ctrl + shift + alt + n
+    # ~/.config/Scripts/rofiNotas.sh
 
 #super + shift + t
     #~/.config/Scripts/rofiKeyBinding.sh
-#super + p
+super + p
+    rofi -modi ":greenclip print" -show  -run-command '{cmd}'
 #    ~/.config/Scripts/elegirAudio.sh
-#super + w
-#    ~/.config/Scripts/selectorWifi.sh
+super + w
+   ~/.config/Scripts/selectorWifi.sh
 
 # ============
 # Aplicaciones
@@ -91,6 +92,8 @@ super + {_,shift + }b
 
 super + d
     ~/Documentos/Aplicaciones/DailyList/dist/DailyList/DailyList
+ctrl + shift + alt + n
+    ~/Documentos/Aplicaciones/NotasR/dist/NotasR/NotasR
 
 {_,super + }Print
     {xfce4-screenshooter,xfce4-screenshooter -r}

@@ -19,6 +19,7 @@ pkil picom
 picom --config ~/.config/picom/picom.conf &
 . "${HOME}/.cache/wal/colors.sh" #PYWAL
 $HOME/.config/polybar/launch.sh
+greenclip daemon &
 # $HOME/.config/polybar/tinybar.sh
 
 # CONFIGURACIONES
