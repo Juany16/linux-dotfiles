@@ -217,59 +217,6 @@
   // min-height: 230px;
 }
 
-// .media-cover-widget {
-//   min-width: 100px;
-//   min-height: 100px;
-//   background-color: transparent;
-//   border-radius: 10px;  
-//   margin-bottom: 10px;
-// }
-
-.media-widget-info {
-  background-color: $background;
-  margin: 0px;
-  padding: 10px;
-  border: 2px solid $foreground;
-  border-radius: 0.5rem;
-}
-
-.media-widget-name {
-  font-size: 12px;
-  color: $foreground;
-}
-
-.media-widget-title {
-  font-size: 18px;
-  font-weight: bold;
-  color: $foreground;
-}
-
-.media-widget-artist {
-  font-size: 14px;
-  color: $foreground;
-}
-
-.media-widget-controls {
-  background-color: $color3;
-  border-radius: 0.4rem;
-  padding: 0;
-}
-
-.media-widget-btn {
-  margin: 0;
-  color: $background;
-  &:hover{
-    color: $color7;
-  }
-}
-
-.media-widget-btn-play{
-  color: $background;
-  &:hover{
-    color: $color7;
-  }
-}
-
 // Apps
 .apps{
   font-size: 25px;
@@ -723,8 +670,8 @@ calendar:indeterminate{
 // Musica
 .spotify {
   background-color: rgba($background, 1);
-  border: 2px solid $color4;
-  border-radius: 12px;
+  border: 2px solid $foreground;
+  border-radius: 10px;
   padding: 10px;
 
   .cover {
@@ -736,10 +683,10 @@ calendar:indeterminate{
   }
 
   .title  { color: $foreground; font-weight: bold; font-size: 16px; }
-  .artist { color: $color6; font-size: 14px; }
+  .artist { color: $foreground; font-size: 14px; }
 
   .controls button {
-    color: $color4;
+    color: $color3;
     font-size: 22px;
     font-weight: bold;
     background: none;
