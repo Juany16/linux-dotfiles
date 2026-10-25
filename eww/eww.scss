@@ -719,3 +719,31 @@ calendar:indeterminate{
     margin: 0px 0 0 0; // arriba, derecha, abajo, izquierda
     padding: 0px 0 0 0; // arriba, derecha, abajo, izquierda
 }
+
+// Musica
+.spotify {
+  background-color: rgba($background, 1);
+  border: 2px solid $color4;
+  border-radius: 12px;
+  padding: 10px;
+
+  .cover {
+    min-width: 80px;
+    min-height: 80px;
+    border-radius: 8px;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .title  { color: $foreground; font-weight: bold; font-size: 16px; }
+  .artist { color: $color6; font-size: 14px; }
+
+  .controls button {
+    color: $color4;
+    font-size: 22px;
+    font-weight: bold;
+    background: none;
+    border: none;
+    &:hover { color: $color2; }
+  }
+}
